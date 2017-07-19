@@ -1,6 +1,6 @@
-VM = vm
+VM = 	abstractVM
 
-CXX  = g++
+CXX  = 	g++
 
 CXXFLAGS = -g -Wall -Wextra -Werror -Wfatal-errors -MD -std=c++11 -I./incs/
 
