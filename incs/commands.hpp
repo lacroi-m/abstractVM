@@ -11,6 +11,8 @@
 #ifndef COMMANDS_HPP_
 # define COMMANDS_HPP_
 
+#include <vector>
+#include <iostream>
 #include "vm.hpp"
 
 class		Commands

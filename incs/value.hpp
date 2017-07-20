@@ -11,6 +11,8 @@
 #ifndef VALUE_HPP_
 # define VALUE_HPP_
 
+#include <vector>
+#include <iostream>
 #include "vm.hpp"
 
 class	Values
