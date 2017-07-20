@@ -1,9 +1,16 @@
 #include "Exception.hpp"
 
-Exception::Exception(const std::string &mssg) : m_mssg(mssg) {}
+Exception::Exception(const std::string &msg) : m_msg(msg)
+{
 
-void Exception::operator=(const std::string &mssg) {
-  m_mssg = mssg;
 }
 
-const char *Exception::what() const noexcept { return m_mssg.c_str();}
+void Exception::operator=(const std::string &msg)
+{
+  m_msg = msg;
+}
+
+const char *Exception::what() const noexcept
+{
+  return m_msg.c_str();
+}
