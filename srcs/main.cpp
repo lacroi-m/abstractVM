@@ -9,8 +9,14 @@
 //
 
 #include "vm.hpp"
+#include "parse_read.hpp"
+#include "parsing.hpp"
 
-int	main()
+int	main(int ac, char **av)
 {
+  if (ac == 2)
+    Parsing	parsing(av[1]);
+  else if (ac == 1)
+    ParseRead	parseRead(std::cin);
   return (0);
 }

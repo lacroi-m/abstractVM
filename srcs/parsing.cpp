@@ -10,13 +10,12 @@ Parsing::Parsing(const char *path)
   std::stringstream	content;
   std::ifstream		file(path, std::ifstream::in);
 
-  file.exceptions (std::ifstream::failbit | std::ifstream::badbit);
-  try {
+  if (file.is_open())
     while (getline(file, tmp))
       content << tmp << std::endl;
-  }
-  catch (const std::ifstream::failure &err) {
+  else {
     std::cerr << "Exception while opening/reading the file : " << path << std::endl;
+    exit(84);
   }
   _content = content.str();
 }
