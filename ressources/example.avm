@@ -6,17 +6,11 @@ push int32(33)
 push int32(42)
 add
 
-bite float(10)
-mdr
 push float(44.55)
 mul
 
 push double(42.42)
-push
 push int8(2)
-push doble(21)
-mul 32
-push int(21)
 push int32(42)
 
 dump

@@ -36,8 +36,8 @@ void				Parsing::suppress_errors() {
 	valid = true;
     }
     if (valid == false) {
-      _clean_map.erase(it);
-      it--;
+      std::cout << "Unknown or misspelled command at " << it->first << std::endl;
+      exit(84);
     }
   }
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
@@ -49,20 +49,26 @@ void				Parsing::suppress_errors() {
 	}
       }
       if (valid == false) {
-	_clean_map.erase(it);
-	it--;
+	std::cerr << "Error at " << it->first
+		  << " with the command" << it->second[0]
+		  << std::endl;
+	exit(84);
       }
     }
     else
       if (std::distance(it->second.begin(), it->second.end()) > 1) {
-	_clean_map.erase(it);
-	it--;
+	std::cerr << "Error at " << it->first
+		  << " with the command" << it->second[0]
+		  << std::endl;
+	exit(84);	
       }
   }
   auto it = _clean_map.end();
   it--;
-  if (it->second[0] != "exit")
+  if (it->second[0] != "exit") {
+    std::cerr << "Expected EXIT command in the file" << std::endl;
     exit(84);
+  }
 }
   
 void				Parsing::show_me_the_map() {
@@ -99,5 +105,4 @@ void		Parsing::checkContent() {
     i++;
   }
   suppress_errors();
-  show_me_the_map();
 }
