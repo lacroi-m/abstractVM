@@ -4,6 +4,7 @@
 
 #include "parse_read.hpp"
 #include "commands.hpp"
+#include "value.hpp"
 
 ParseRead::ParseRead(std::istream &cin) {
   std::string		tmp;
@@ -18,6 +19,8 @@ ParseRead::ParseRead(std::istream &cin) {
 
 void                            ParseRead::suppress_errors() {
   Commands                      *com = new Commands();
+  Values			*val = new Values();
+  std::vector<std::string>	value = val->get_values();
   std::vector<std::string>      commands = com->get_commands();
   bool                          valid = false;
 
@@ -32,6 +35,20 @@ void                            ParseRead::suppress_errors() {
       it--;
     }
   }
+  for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
+    valid = false;
+    if (it->second[0] == "push" || it->second[0] == "load" || it->second[0] == "assert" || it->second[0] == "store") {
+      for (std::vector<std::string>::iterator ite = value.begin(); ite != value.end(); ++ite) {
+        if (it->second[1] == *ite)
+          valid = true;
+      }
+      if (valid == false) {
+        _clean_map.erase(it);
+        it--;
+      }
+    }
+  }
+
 }
 
 void                            ParseRead::print_me_the_map() {

@@ -4,6 +4,7 @@
 
 #include "parsing.hpp"
 #include "commands.hpp"
+#include "value.hpp"
 
 Parsing::Parsing(const char *path) {
   std::string		tmp;
@@ -23,7 +24,9 @@ Parsing::Parsing(const char *path) {
 
 void				Parsing::suppress_errors() {
   Commands			*com = new Commands();
+  Values			*val = new Values();
   std::vector<std::string>	commands = com->get_commands();
+  std::vector<std::string>	value = val->get_values();
   bool				valid = false;
   
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
@@ -35,6 +38,19 @@ void				Parsing::suppress_errors() {
     if (valid == false) {
       _clean_map.erase(it);
       it--;
+    }
+  }
+  for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
+    valid = false;
+    if (it->second[0] == "push" || it->second[0] == "load" || it->second[0] == "assert" || it->second[0] == "store") {
+      for (std::vector<std::string>::iterator ite = value.begin(); ite != value.end(); ++ite) {
+	if (it->second[1] == *ite)
+	  valid = true;
+      }
+      if (valid == false) {
+	_clean_map.erase(it);
+	it--;
+      }
     }
   }
 }
