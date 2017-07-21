@@ -18,5 +18,9 @@ int	main(int ac, char **av)
     Parsing	parsing(av[1]);
   else if (ac == 1)
     ParseRead	parseRead(std::cin);
+  else {
+    std::cerr << "Are you able to follow a simple usage ?" << std::endl;
+    exit(84);
+  }   
   return (0);
 }
