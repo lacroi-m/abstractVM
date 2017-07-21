@@ -19,7 +19,7 @@ public:
   void		checkContent();
 private:
   std::string				_content;
-  std::map<std::string, std::string>	_clean_map;
+  std::map<std::string, std::string, std::less<std::string>>	_clean_map;
 };
 
 #endif /* !PARSING */
