@@ -19,6 +19,7 @@ public:
   ~ParseRead(){};
   void		checkContent();
   void		print_me_the_map();
+  void		suppress_errors();
   std::vector<std::string>		split_line(std::string&);
 private:
   std::string				_content;

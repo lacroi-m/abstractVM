@@ -3,9 +3,9 @@
 */
 
 #include "parsing.hpp"
+#include "commands.hpp"
 
-Parsing::Parsing(const char *path)
-{
+Parsing::Parsing(const char *path) {
   std::string		tmp;
   std::stringstream	content;
   std::ifstream		file(path, std::ifstream::in);
@@ -21,6 +21,24 @@ Parsing::Parsing(const char *path)
   checkContent();
 }
 
+void				Parsing::suppress_errors() {
+  Commands			*com = new Commands();
+  std::vector<std::string>	commands = com->get_commands();
+  bool				valid = false;
+  
+  for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
+    valid = false;
+    for (std::vector<std::string>::iterator ite = commands.begin(); ite != commands.end(); ++ite) {
+      if (it->second[0] == *ite)
+	valid = true;
+    }
+    if (valid == false) {
+      _clean_map.erase(it);
+      it--;
+    }
+  }
+}
+
 void				Parsing::show_me_the_map() {
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
     std::cout << "--[" << it->first << "]--" << std::endl;
@@ -29,11 +47,9 @@ void				Parsing::show_me_the_map() {
   }
 }
 
-std::vector<std::string>	Parsing::split_line(std::string &line)
-{
+std::vector<std::string>	Parsing::split_line(std::string &line) {
   std::vector<std::string>	splited;
   std::string			buf;
-
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
   std::istringstream	       	tmp(line);
@@ -56,5 +72,6 @@ void		Parsing::checkContent() {
     }
     i++;
   }
+  suppress_errors();
   show_me_the_map();
 }

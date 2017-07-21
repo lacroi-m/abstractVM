@@ -6,6 +6,8 @@ push int32(33)
 push int32(42)
 add
 
+bite float(10)
+mdr
 push float(44.55)
 mul
 

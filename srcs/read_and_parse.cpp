@@ -3,6 +3,7 @@
 */
 
 #include "parse_read.hpp"
+#include "commands.hpp"
 
 ParseRead::ParseRead(std::istream &cin) {
   std::string		tmp;
@@ -15,6 +16,24 @@ ParseRead::ParseRead(std::istream &cin) {
   checkContent();
 }
 
+void                            ParseRead::suppress_errors() {
+  Commands                      *com = new Commands();
+  std::vector<std::string>      commands = com->get_commands();
+  bool                          valid = false;
+
+  for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
+    valid = false;
+    for (std::vector<std::string>::iterator ite = commands.begin(); ite != commands.end(); ++ite) {
+      if (it->second[0] == *ite)
+        valid = true;
+    }
+    if (valid == false) {
+      _clean_map.erase(it);
+      it--;
+    }
+  }
+}
+
 void                            ParseRead::print_me_the_map() {
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
     std::cout << "--[" << it->first << "]--" << std::endl;
@@ -23,8 +42,7 @@ void                            ParseRead::print_me_the_map() {
   }
 }
 
-std::vector<std::string>        ParseRead::split_line(std::string &line)
-{
+std::vector<std::string>        ParseRead::split_line(std::string &line) {
   std::vector<std::string>      splited;
   std::string                   buf;
 
@@ -50,6 +68,7 @@ void					 ParseRead::checkContent() {
     }
     i++;
   }
+  suppress_errors();
   print_me_the_map();
 }
 

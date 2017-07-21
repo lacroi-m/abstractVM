@@ -20,6 +20,7 @@ public:
   ~Parsing(){};
   void		checkContent();
   void		show_me_the_map();
+  void		suppress_errors();
   std::vector<std::string>		split_line(std::string&);
 private:
   std::string				_content;
