@@ -12,6 +12,8 @@ push float(44.55)
 mul
 
 push double(42.42)
+push
+push int8(2)
 push doble(21)
 mul 32
 push int(21)

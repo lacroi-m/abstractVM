@@ -24,7 +24,7 @@ void                            ParseRead::suppress_errors() {
   std::vector<std::string>      commands = com->get_commands();
   bool                          valid = false;
 
-  for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
+    for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
     valid = false;
     for (std::vector<std::string>::iterator ite = commands.begin(); ite != commands.end(); ++ite) {
       if (it->second[0] == *ite)
@@ -38,18 +38,28 @@ void                            ParseRead::suppress_errors() {
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
     valid = false;
     if (it->second[0] == "push" || it->second[0] == "load" || it->second[0] == "assert" || it->second[0] == "store") {
-      for (std::vector<std::string>::iterator ite = value.begin(); ite != value.end(); ++ite) {
-        if (it->second[1] == *ite)
+     for (std::vector<std::string>::iterator ite = value.begin(); ite != value.end(); ++ite) {
+        if (std::distance(it->second.begin(), it->second.end()) > 1 && (it->second[1] == *ite)) {
           valid = true;
+        }
       }
       if (valid == false) {
-        _clean_map.erase(it);
+	_clean_map.erase(it);
         it--;
       }
     }
+    else
+      if (std::distance(it->second.begin(), it->second.end()) > 1) {
+        _clean_map.erase(it);
+        it--;
+      }
   }
-
+  auto it = _clean_map.end();
+  it--;
+  if (it->second[0] != "exit")
+    exit(84);
 }
+
 
 void                            ParseRead::print_me_the_map() {
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
