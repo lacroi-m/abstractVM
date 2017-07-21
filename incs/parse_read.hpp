@@ -9,6 +9,8 @@
 #include <exception>
 #include <sstream>
 #include <cstring>
+#include <vector>
+#include <algorithm>
 #include <map>
 
 class ParseRead : std::exception {
@@ -16,9 +18,13 @@ public:
   ParseRead(std::istream &);
   ~ParseRead(){};
   void		checkContent();
+  void		print_me_the_map();
+  std::vector<std::string>		split_line(std::string&);
 private:
   std::string				_content;
-  std::map<std::string, std::string>	_clean_map;
+  std::map<std::string,
+	   std::vector<std::string>,
+	   std::less<std::string>>	 _clean_map;
 };
 
 #endif /* ! PARSE_READ_HPP_ */
