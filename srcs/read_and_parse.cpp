@@ -58,6 +58,8 @@ void                            ParseRead::suppress_errors() {
         exit(84);
       }
   }
+  if (_clean_map.begin() == _clean_map.end())
+    exit(84);
   auto it = _clean_map.end();
   it--;
   if (it->second[0] != "exit") {
