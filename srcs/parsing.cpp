@@ -4,6 +4,8 @@
 
 #include "parsing.hpp"
 #include "commands.hpp"
+#include "value.hpp"
+#include <cstring>
 
 Parsing::Parsing(const char *path) {
   std::string		tmp;
@@ -23,7 +25,9 @@ Parsing::Parsing(const char *path) {
 
 void				Parsing::suppress_errors() {
   Commands			*com = new Commands();
+  Values			*val = new Values();
   std::vector<std::string>	commands = com->get_commands();
+  std::vector<std::string>	value = val->get_values();
   bool				valid = false;
   
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
@@ -33,12 +37,41 @@ void				Parsing::suppress_errors() {
 	valid = true;
     }
     if (valid == false) {
-      _clean_map.erase(it);
-      it--;
+      std::cout << "Unknown command at " << it->first << std::endl;
+      exit(84);
     }
   }
+  for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
+    valid = false;
+    if (it->second[0] == "push" || it->second[0] == "load" || it->second[0] == "assert" || it->second[0] == "store") {
+      for (std::vector<std::string>::iterator ite = value.begin(); ite != value.end(); ++ite) {
+	if (std::distance(it->second.begin(), it->second.end()) > 1 && (it->second[1] == *ite)) {
+	  valid = true;
+	}
+      }
+      if (valid == false) {
+	std::cerr << "Error at " << it->first
+		  << " with the command" << it->second[0]
+		  << std::endl;
+	exit(84);
+      }
+    }
+    else
+      if (std::distance(it->second.begin(), it->second.end()) > 1) {
+	std::cerr << "Error at " << it->first
+		  << " with the command" << it->second[0]
+		  << std::endl;
+	exit(84);	
+      }
+  }
+  auto it = _clean_map.end();
+  it--;
+  if (it->second[0] != "exit") {
+    std::cerr << "Expected EXIT command in the file" << std::endl;
+    exit(84);
+  }
 }
-
+  
 void				Parsing::show_me_the_map() {
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
     std::cout << "--[" << it->first << "]--" << std::endl;
@@ -58,7 +91,7 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
   return (splited);
 }
 
-void		Parsing::checkContent() {
+void					Parsing::checkContent() {
   std::istringstream			toParse(_content);
   std::string				tmp;
   int					i = 1;
@@ -70,10 +103,13 @@ void		Parsing::checkContent() {
       else	
 	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line" + std::to_string(i), split_line(tmp)));
     }
+    if (std::strncmp(tmp.c_str(), "exit", 4) == 0) {
+      suppress_errors();
+      return ;
+    }
     i++;
   }
   suppress_errors();
-  //  show_me_the_map();
 }
 
 std::map<std::string,std::vector<std::string>, std::less<std::string>>	Parsing::get_map(){

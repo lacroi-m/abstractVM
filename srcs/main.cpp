@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Wed Jul 19 19:22:54 2017 Maxime Lacroix
-// Last update Fri Jul 21 22:11:00 2017 thomas duchet
+// Last update Sat Jul 22 15:06:10 2017 thomas duchet
 //
 
 #include "vm.hpp"
@@ -28,5 +28,9 @@ int	main(int ac, char **av)
       ParseRead	parseRead(std::cin);
       stack.manage_func(parseRead.get_map());
     }
+  else {
+    std::cerr << "Are you able to follow a simple usage ?" << std::endl;
+    exit(84);
+  }
   return (0);
 }

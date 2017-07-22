@@ -12,9 +12,9 @@
 #include "../incs/vm.hpp"
 
 Values::Values() {
-  this->values.push_back("int 8");
-  this->values.push_back("int 16");
-  this->values.push_back("int 32");
+  this->values.push_back("int8");
+  this->values.push_back("int16");
+  this->values.push_back("int32");
   this->values.push_back("float");
   this->values.push_back("double");
   this->values.push_back("bigdecimal");
