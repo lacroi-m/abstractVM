@@ -5,13 +5,14 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Thu Jul 20 13:59:44 2017 thomas duchet
-// Last update Thu Jul 20 14:50:21 2017 thomas duchet
+// Last update Fri Jul 21 11:22:11 2017 Maxime Lacroix
 //
 
 #include "../incs/commands.hpp"
 #include "../incs/vm.hpp"
 
-Commands::Commands() {
+Commands::Commands()
+{
   this->commands.push_back("push");
   this->commands.push_back("pop");
   this->commands.push_back("dump");
