@@ -5,6 +5,7 @@
 #include "parse_read.hpp"
 #include "commands.hpp"
 #include "value.hpp"
+#include <regex>
 
 ParseRead::ParseRead(std::istream &cin) {
   std::string		tmp;
@@ -80,12 +81,25 @@ void                            ParseRead::print_me_the_map() {
 std::vector<std::string>        ParseRead::split_line(std::string &line) {
   std::vector<std::string>      splited;
   std::string                   buf;
-
+  std::string			mdr = "^\\s*-?[0-9]{1,10}\\s*$";
+  std::regex			ints(mdr);
+  
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
   std::istringstream            tmp(line);
-  while (getline(tmp, buf, ' '))
+  while (getline(tmp, buf, ' ')) {
     splited.push_back(buf);
+  }
+  if (splited[0] == "push" || splited[0] == "load" || splited[0] == "assert" || splited[0] == "store") {
+    if (std::strncmp(splited[1].c_str(), "int", 3) == 0) {
+      if (std::regex_match(splited[2], ints) == false) {
+        std::cerr << "Bad value in the command : "
+                  << splited[0] << " " << splited[1]
+                  << " of value (" << splited[2] << ")" << std::endl;
+        exit(84);
+      }
+    }
+  }
   return (splited);
 }
 
@@ -102,7 +116,7 @@ void					ParseRead::checkContent() {
       if (i < 10)
 	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line0" + std::to_string(i), split_line(tmp)));
       else
-        _clean_map.insert(std::pair<std::string, std::vector<std::string>>("line" + std::to_string(i), split_line(tmp)));
+	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line" + std::to_string(i), split_line(tmp)));
     }
     if (std::strncmp(tmp.c_str(), "exit", 4) == 0) {
       suppress_errors();
