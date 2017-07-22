@@ -92,6 +92,9 @@ void					ParseRead::checkContent() {
   std::string                           tmp;
   int                                   i = 1;
 
+  getline(toParse, tmp);
+  if (tmp.length() < 1)
+    exit(84);
   while (getline(toParse, tmp)) {
     if (tmp.length() > 1 && tmp.c_str()[0] != ';') {
       if (i < 10)
