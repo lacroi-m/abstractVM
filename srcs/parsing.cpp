@@ -73,5 +73,9 @@ void		Parsing::checkContent() {
     i++;
   }
   suppress_errors();
-  show_me_the_map();
+  //  show_me_the_map();
+}
+
+std::map<std::string,std::vector<std::string>, std::less<std::string>>	Parsing::get_map(){
+  return this->_clean_map;
 }

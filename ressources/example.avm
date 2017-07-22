@@ -3,18 +3,14 @@
 ;-----------------
 
 push int32(33)
-push int32(42)
+push int8(33)
+push int16(42)
 add
-
-bite float(10)
-mdr
-push float(44.55)
+push float (44.55)
 mul
-
 push double(42.42)
 push int32(42)
-
 dump
 pop
-assert double(42.42)
+assert double (42.42)
 exit

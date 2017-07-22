@@ -8,7 +8,7 @@
 ParseRead::ParseRead(std::istream &cin) {
   std::string		tmp;
   std::stringstream	content;
-  
+
   while (getline(cin, tmp)
 	 && std::strncmp(tmp.c_str(), ";;", 2) != 0)
     content << tmp << std::endl;
@@ -72,3 +72,6 @@ void					 ParseRead::checkContent() {
   print_me_the_map();
 }
 
+std::map<std::string, std::vector<std::string>, std::less<std::string>>	ParseRead::get_map() {
+  return this->_clean_map;
+}
