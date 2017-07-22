@@ -9,7 +9,12 @@
 ParseRead::ParseRead(std::istream &cin) {
   std::string		tmp;
   std::stringstream	content;
-  
+
+  getline(cin,tmp);
+  if (tmp.length() < 1)
+    exit(84);
+  else
+    content << tmp << std::endl;
   while (getline(cin, tmp)
 	 && std::strncmp(tmp.c_str(), ";;", 2) != 0)
     content << tmp << std::endl;
@@ -31,7 +36,7 @@ void                            ParseRead::suppress_errors() {
         valid = true;
     }
     if (valid == false) {
-      std::cout << "Unknown or misspelled command at " << it->first << std::endl;
+      std::cout << "Unknown command at " << it->first << std::endl;
       exit(84);
     }
   }
@@ -87,7 +92,7 @@ std::vector<std::string>        ParseRead::split_line(std::string &line) {
   return (splited);
 }
 
-void					 ParseRead::checkContent() {
+void					ParseRead::checkContent() {
   std::istringstream                    toParse(_content);
   std::string                           tmp;
   int                                   i = 1;
@@ -98,6 +103,10 @@ void					 ParseRead::checkContent() {
 	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line0" + std::to_string(i), split_line(tmp)));
       else
         _clean_map.insert(std::pair<std::string, std::vector<std::string>>("line" + std::to_string(i), split_line(tmp)));
+    }
+    if (std::strncmp(tmp.c_str(), "exit", 4) == 0) {
+      suppress_errors();
+      return ;
     }
     i++;
   }

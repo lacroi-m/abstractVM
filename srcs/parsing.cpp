@@ -5,6 +5,7 @@
 #include "parsing.hpp"
 #include "commands.hpp"
 #include "value.hpp"
+#include <cstring>
 
 Parsing::Parsing(const char *path) {
   std::string		tmp;
@@ -36,7 +37,7 @@ void				Parsing::suppress_errors() {
 	valid = true;
     }
     if (valid == false) {
-      std::cout << "Unknown or misspelled command at " << it->first << std::endl;
+      std::cout << "Unknown command at " << it->first << std::endl;
       exit(84);
     }
   }
@@ -90,7 +91,7 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
   return (splited);
 }
 
-void		Parsing::checkContent() {
+void					Parsing::checkContent() {
   std::istringstream			toParse(_content);
   std::string				tmp;
   int					i = 1;
@@ -101,6 +102,10 @@ void		Parsing::checkContent() {
 	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line0" + std::to_string(i), split_line(tmp)));
       else	
 	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line" + std::to_string(i), split_line(tmp)));
+    }
+    if (std::strncmp(tmp.c_str(), "exit", 4) == 0) {
+      suppress_errors();
+      return ;
     }
     i++;
   }
