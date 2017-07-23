@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Sun Jul 23 16:51:51 2017 Maxime Lacroix
+// Last update Sun Jul 23 17:32:23 2017 thomas duchet
 //
 
 #include "../incs/Stack.hpp"
@@ -62,11 +62,6 @@ std::stack<IOperand *>		Stack::get_stack() {
   return this->stack;
 }
 
-void	my_error(std::string msg, int ret) {
-  std::cerr<<msg<<std::endl;
-  exit(ret);
-}
-
 void	aff_vector(std::vector<std::string> vector)
 {
   for (std::vector<std::string>::iterator it = vector.begin(); it != vector.end(); ++it)
@@ -103,10 +98,10 @@ void    Stack::manage_func(__attribute__((unused))std::map<std::string, std::vec
 }
 
 void                            Stack::my_push(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"PUSH"<<std::endl;
+  std::cerr<<"PUSH"<<std::endl;
   if (cmd[1].compare("int8") == 0)
     stack.push(Factory::createOperand(eOperandType::Int8, cmd[2]));
-  /*if (cmd[1].compare("int16") == 0)
+  if (cmd[1].compare("int16") == 0)
     stack.push(Factory::createOperand(eOperandType::Int16,cmd[2]));
   if (cmd[1].compare("int32") == 0)
     stack.push(Factory::createOperand(eOperandType::Int32,cmd[2]));
@@ -115,11 +110,11 @@ void                            Stack::my_push(__attribute__((unused))std::vecto
   if (cmd[1].compare("double") == 0)
     stack.push(Factory::createOperand(eOperandType::Float,cmd[2]));
   if (cmd[1].compare("bigdecimal") == 0)
-  stack.push(Factory::createOperand(eOperandType::BigDecimal,cmd[2]));*/
+  stack.push(Factory::createOperand(eOperandType::BigDecimal,cmd[2]));
 }
 
 void                            Stack::my_pop(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"POP"<<std::endl;
+  std::cerr<<"POP"<<std::endl;
   if (stack.empty() == true)
     throw Exception("Cant pop, stack empty");
   else
@@ -127,7 +122,7 @@ void                            Stack::my_pop(__attribute__((unused))std::vector
 }
 
 void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"DUMP"<<std::endl;
+  std::cerr<<"DUMP"<<std::endl;
 
   for (std::stack<IOperand*> dump = stack; !dump.empty(); dump.pop())
     std::cout << dump.top()->toString() << '\n';
@@ -136,58 +131,72 @@ void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
 void                            Stack::my_clear(__attribute__((unused))std::vector<std::string> cmd) {
   while (!stack.empty())
     stack.pop();
-  std::cout<<"CLEAR"<<std::endl;
+  std::cerr<<"CLEAR"<<std::endl;
 }
 
 void                            Stack::my_dup(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"DUP"<<std::endl;
-  // tmp =  new IOperand(;
+  std::cerr<<"DUP"<<std::endl;
+  IOperand		*tmp;
   if (stack.empty() == true)
-    my_error("Satck is empty", 84);
+    throw Exception("can't dup, stack empty");
   else
-      {
-      //tmp = new IOperand(stack.end());
-      //            stack.push(tmp);
+    {
+      tmp = stack.top();
+      stack.push(tmp);
     }
 }
 
 void                            Stack::my_swap(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"SWAP"<<std::endl;
+  std::cerr<<"SWAP"<<std::endl;
+  IOperand	*tmp;
+  IOperand	*tmp2;
+
+  if (stack.size() >= 2)
+    {
+      tmp = stack.top();
+      stack.pop();
+      tmp2 = stack.top();
+      stack.pop();
+      stack.push(tmp);
+      stack.push(tmp2);
+    }
+  else
+    throw Exception("can't swap, stack doesnt contain 2 elements");
 }
 
 void                            Stack::my_assert(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"ASSERT"<<std::endl;
+  std::cerr<<"ASSERT"<<std::endl;
 }
 
 void                            Stack::my_add(__attribute__((unused))std::vector<std::string> cmd) {
   //  aff_vector(cmd);
-  std::cout<<"ADD"<<std::endl;
+  std::cerr<<"ADD"<<std::endl;
 }
 
 void                            Stack::my_sub(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"SUB"<<std::endl;
+  std::cerr<<"SUB"<<std::endl;
 }
 
 void                            Stack::my_mul(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"MUL"<<std::endl;
+  std::cerr<<"MUL"<<std::endl;
 }
 
 void                            Stack::my_div(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"LOAD"<<std::endl;
+  std::cerr<<"LOAD"<<std::endl;
 }
 
 void                            Stack::my_load(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"LOAD"<<std::endl;
+  std::cerr<<"LOAD"<<std::endl;
 }
 
 void                            Stack::my_store(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"STORE"<<std::endl;
+  std::cerr<<"STORE"<<std::endl;
 }
 
 void				Stack::my_print(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"PRINT"<<std::endl;
+  std::cerr<<"PRINT"<<std::endl;
 }
 
 void				Stack::my_exit(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cout<<"EXIT"<<std::endl;
+  std::cerr<<"EXIT"<<std::endl;
 }

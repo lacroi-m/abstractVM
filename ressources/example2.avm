@@ -1,8 +1,10 @@
 ;-----------------
 ;-- example.avm --
 ;-----------------
-
+push int8(1)
 push int8(2)
+dump
+swap
 dump
 exit
 

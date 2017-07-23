@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Wed Jul 19 19:22:54 2017 Maxime Lacroix
-// Last update Sun Jul 23 16:53:15 2017 Maxime Lacroix
+// Last update Sun Jul 23 17:33:02 2017 thomas duchet
 //
 
 #include "Exception.hpp"
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
     }
   catch(Exception const& exc)
     {
-      std::cerr << "Execption catched :\n" << exc.what() << std::endl;
+      std::cerr << "Exception catched :" << exc.what() << std::endl;
       return (84);
     }
   return (0);
