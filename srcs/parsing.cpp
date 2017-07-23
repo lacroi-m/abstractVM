@@ -68,10 +68,8 @@ void				Parsing::suppress_errors() {
   if (it == _clean_map.begin())
     exit(84);
   it--;
-  if (it->second[0] != "exit") {
-    std::cerr << "Expected EXIT command in the file" << std::endl;
-    exit(84);
-  }
+  if (it->second[0] != "exit")
+    throw Exception("Expected EXIT command in the file");
 }
   
 void				Parsing::show_me_the_map() {

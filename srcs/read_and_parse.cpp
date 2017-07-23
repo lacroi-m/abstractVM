@@ -5,6 +5,7 @@
 #include "parse_read.hpp"
 #include "commands.hpp"
 #include "value.hpp"
+#include "Exception.hpp"
 #include <regex>
 
 ParseRead::ParseRead(std::istream &cin) {
@@ -63,10 +64,8 @@ void                            ParseRead::suppress_errors() {
     exit(84);
   auto it = _clean_map.end();
   it--;
-  if (it->second[0] != "exit") {
-    std::cerr << "Expected EXIT command in the file" << std::endl;
-    exit(84);
-  }
+  if (it->second[0] != "exit")
+    throw Exception("Expected EXIT command in the file");
 }
 
 
