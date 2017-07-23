@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Sun Jul 23 19:44:05 2017 thomas duchet
+// Last update Sun Jul 23 21:54:11 2017 Maxime Lacroix
 //
 
 #include "../incs/Stack.hpp"
@@ -126,7 +126,12 @@ void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"DUMP"<<std::endl;
 
   for (std::stack<IOperand*> dump = stack; !dump.empty(); dump.pop())
-    std::cout << dump.top()->toString() << '\n';
+    {
+      if ((int)eOperandType::Float < (int)dump.top()->getType() && (int)dump.top()->getType() != (int)eOperandType::BigDecimal)
+	std::cout << std::stof(dump.top()->toString()) << '\n';
+  else
+	std::cout << dump.top()->toString() << '\n';
+    }
 }
 
 void                            Stack::my_clear(__attribute__((unused))std::vector<std::string> cmd) {
