@@ -5,24 +5,24 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 12:45:48 2017 Maxime Lacroix
-// Last update Sun Jul 23 13:47:04 2017 Maxime Lacroix
+// Last update Sun Jul 23 16:12:55 2017 thomas duchet
 //
 
 #include "Factory.hpp"
 #include "Types.hpp"
 #include "Exception.hpp"
 
-IOperand*	createInt8(const std::string& value)
+IOperand*	Factory::createInt8(const std::string& value)
 {
   std::string	valuee(value);
-  std::string	ogvalue(valuee.substr(valuee.find("(") + 1, valuee.find(")")));
-  std::int8_t	container(std::stoi(ogvalue));
+  //  std::string	ogvalue(valuee.substr(valuee.find("(") + 1, valuee.find(")")));
+  std::int8_t	container(std::stoi(valuee));
   
   if (!container || (container < -127 && container > 126))
     throw Exception("Canot convert '" + value + "' to Int8\n");  
   return (dynamic_cast<IOperand *> (new Int8(container)));
 }
-IOperand*	createInt16(const std::string& value)
+IOperand*	Factory::createInt16(const std::string& value)
 {
   std::string	valuee(value);
   std::string	ogval(valuee.substr(valuee.find("(") + 1, valuee.find(")")));
@@ -32,7 +32,7 @@ IOperand*	createInt16(const std::string& value)
   return (dynamic_cast<IOperand *> (new Int8(container)));
 }
 
-IOperand*	createInt32(const std::string& value)
+IOperand*	Factory::createInt32(const std::string& value)
 {
   std::string	valuee(value);
   std::string	ogval(valuee.substr(valuee.find("(") + 1, valuee.find(")")));
@@ -42,7 +42,7 @@ IOperand*	createInt32(const std::string& value)
   return (dynamic_cast<IOperand *> (new Int8(container)));
 }
 
-IOperand*	createFloat(const std::string& value)
+IOperand*	Factory::createFloat(const std::string& value)
 {
   std::string	valuee(value);
   std::string	ogval(valuee.substr(valuee.find("(") + 1, valuee.find(")")));
@@ -52,7 +52,7 @@ IOperand*	createFloat(const std::string& value)
   return (dynamic_cast<IOperand *> (new Int8(container)));
 }
 
-IOperand*	createDouble(const std::string& value)
+IOperand*	Factory::createDouble(const std::string& value)
 {
   std::string	valuee(value);
   std::string	ogval(valuee.substr(valuee.find("(") + 1, valuee.find(")")));
@@ -62,7 +62,7 @@ IOperand*	createDouble(const std::string& value)
   return (dynamic_cast<IOperand *> (new Int8(container)));
 }
 
-IOperand*	createBigDecimal(const std::string& value)
+IOperand*	Factory::createBigDecimal(const std::string& value)
 {
   std::string	valuee(value);
   std::string	ogval(valuee.substr(valuee.find("(") + 1, valuee.find(")")));
@@ -70,19 +70,21 @@ IOperand*	createBigDecimal(const std::string& value)
 }
 
 
-IOperand*	 createOperand(eOperandType type, const std::string& value)
+IOperand*	 Factory::createOperand(eOperandType type, const std::string& value)
 {
+  Factory	test;
+
   if (type == eOperandType::Int8)
-    return (createInt8(value));
+    return (test.createInt8(value));
   if (type == eOperandType::Int16)
-    return (createInt16(value));
+    return (test.createInt16(value));
   if (type == eOperandType::Int32)
-    return (createInt32(value));
+    return (test.createInt32(value));
   if (type == eOperandType::Double)
-    return (createDouble(value));
+    return (test.createDouble(value));
   if (type == eOperandType::Float)
-    return (createFloat(value));
-  return (createBigDecimal(value));
+    return (test.createFloat(value));
+  return (test.createBigDecimal(value));
 }
 /*
 IOperand* Int8::operator+(const IOperand &rhs) const

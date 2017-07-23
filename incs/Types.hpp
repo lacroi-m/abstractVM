@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 10:44:16 2017 Maxime Lacroix
-// Last update Sat Jul 22 18:24:46 2017 Maxime Lacroix
+// Last update Sun Jul 23 16:09:36 2017 thomas duchet
 //
 
 
@@ -21,7 +21,7 @@ class	Int8: public IOperand// -128 to 127
 {
 public:
   std::int8_t	m_nbr;
-  Int8(const std::int8_t& nbr);
+  Int8(const std::int8_t& nbr) : m_nbr(nbr){};
   ~Int8();
   virtual std::string toString() const {return(std::to_string(m_nbr));} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::Int8);} //returnes thr Type of instance

@@ -5,10 +5,14 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Sat Jul 22 15:00:07 2017 thomas duchet
+// Last update Sun Jul 23 16:12:13 2017 thomas duchet
 //
 
 #include "../incs/Stack.hpp"
+#include "../incs/IOperand.hpp"
+#include "../incs/Types.hpp"
+#include "../incs/Factory.hpp"
+#include "../incs/value.hpp"
 
 Stack::Stack() {
   this->commands.push_back("push");
@@ -57,6 +61,11 @@ std::stack<IOperand *>		Stack::get_stack() {
   return this->stack;
 }
 
+void	my_error(std::string msg, int ret) {
+  std::cerr<<msg<<std::endl;
+  exit(ret);
+}
+
 void	aff_vector(std::vector<std::string> vector)
 {
   for (std::vector<std::string>::iterator it = vector.begin(); it != vector.end(); ++it)
@@ -93,46 +102,52 @@ void    Stack::manage_func(__attribute__((unused))std::map<std::string, std::vec
 }
 
 void                            Stack::my_push(__attribute__((unused))std::vector<std::string> cmd) {
-  //aff_vector(cmd);
   std::cout<<"PUSH"<<std::endl;
-  //  aff_vector(this->cmd);
-  //  if (arg[1].find_first_of("int16") == 0)
   if (cmd[1].compare("int8") == 0)
-    //  std::cout<<"ca passe en int8"<<std::endl;
-    //stack.push(createInt8(cmd[2]));
-  if (cmd[1].compare("int16") == 0)
-    //std::cout<<"ca passe en int16"<<std::endl;
-    // stack.push(createInt16(cmd[2]));
+    stack.push(Factory::createOperand(eOperandType::Int8, cmd[2]));
+  /*if (cmd[1].compare("int16") == 0)
+    stack.push(Factory::createOperand(eOperandType::Int16,cmd[2]));
   if (cmd[1].compare("int32") == 0)
-    //std::cout<<"ca passe en int32"<<std::endl;
-    //stack.push(createInt32(cmd[2]));
+    stack.push(Factory::createOperand(eOperandType::Int32,cmd[2]));
   if (cmd[1].compare("float") == 0)
-    //stack.push(createFloat(cmd[2]));
+    stack.push(Factory::createOperand(eOperandType::Double,cmd[2]));
   if (cmd[1].compare("double") == 0)
-    //stack.push(createDouble(cmd[2]));
+    stack.push(Factory::createOperand(eOperandType::Float,cmd[2]));
   if (cmd[1].compare("bigdecimal") == 0)
-    // stack.push(createBigdecimal(cmd[2]));
-    {
-  //aff_vector(stack);
-    }
+  stack.push(Factory::createOperand(eOperandType::BigDecimal,cmd[2]));*/
 }
-    /* if (cmd[1].compare("int16") == 0)
-       stack.push_back(createInt16(cmd[2]);*/
 
 void                            Stack::my_pop(__attribute__((unused))std::vector<std::string> cmd) {
   std::cout<<"POP"<<std::endl;
+  if (stack.empty() == true)
+    my_error("Stack is empty", 84);
+  else
+    stack.pop();
 }
 
 void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
   std::cout<<"DUMP"<<std::endl;
+
+  for (std::stack<IOperand*> dump = stack; !dump.empty(); dump.pop())
+    std::cout << dump.top()->toString() << '\n';
 }
 
 void                            Stack::my_clear(__attribute__((unused))std::vector<std::string> cmd) {
+  while (!stack.empty())
+    stack.pop();
   std::cout<<"CLEAR"<<std::endl;
 }
 
 void                            Stack::my_dup(__attribute__((unused))std::vector<std::string> cmd) {
   std::cout<<"DUP"<<std::endl;
+  // tmp =  new IOperand(;
+  if (stack.empty() == true)
+    my_error("Satck is empty", 84);
+  else
+      {
+      //tmp = new IOperand(stack.end());
+      //            stack.push(tmp);
+    }
 }
 
 void                            Stack::my_swap(__attribute__((unused))std::vector<std::string> cmd) {

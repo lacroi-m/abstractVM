@@ -5,13 +5,9 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Sat Jul 22 10:18:18 2017 Maxime Lacroix
-// Last update Sat Jul 22 18:25:07 2017 Maxime Lacroix
+// Last update Sun Jul 23 16:10:03 2017 thomas duchet
 //
 
 #include "Types.hpp"
-
-Int8::Int8(const std::int8_t& nbr){
-  (void)nbr;
-}
 
 Int8::~Int8(){}

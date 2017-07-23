@@ -2,8 +2,7 @@
 ;-- example.avm --
 ;-----------------
 
-push int32(32)
-push int16(23)
-add
+push int8(2)
+dump
 exit
 

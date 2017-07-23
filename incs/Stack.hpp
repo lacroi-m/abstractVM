@@ -5,12 +5,13 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Thu Jul 20 19:35:50 2017 thomas duchet
-// Last update Sat Jul 22 14:49:39 2017 thomas duchet
+// Last update Sun Jul 23 14:06:13 2017 thomas duchet
 //
 
 #ifndef STACK_HPP_
 # define STACK_HPP_
 
+#include "../incs/Factory.hpp"
 #include "../incs/parsing.hpp"
 #include "../incs/IOperand.hpp"
 #include <stack>
