@@ -21,7 +21,6 @@ int	main(int ac, char **av)
   if (ac == 2)
     {
       Parsing	parsing(av[1]);
-      std::cout << "On est passé par ici" << std::endl;
       stack.manage_func(parsing.get_map());
     }
   else if (ac == 1)
