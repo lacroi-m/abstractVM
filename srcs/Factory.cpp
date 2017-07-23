@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 12:45:48 2017 Maxime Lacroix
-// Last update Sat Jul 22 18:22:52 2017 Maxime Lacroix
+// Last update Sun Jul 23 13:47:04 2017 Maxime Lacroix
 //
 
 #include "Factory.hpp"
@@ -67,6 +67,22 @@ IOperand*	createBigDecimal(const std::string& value)
   std::string	valuee(value);
   std::string	ogval(valuee.substr(valuee.find("(") + 1, valuee.find(")")));
   return (dynamic_cast<IOperand *> (new BigDecimal(ogval)));
+}
+
+
+IOperand*	 createOperand(eOperandType type, const std::string& value)
+{
+  if (type == eOperandType::Int8)
+    return (createInt8(value));
+  if (type == eOperandType::Int16)
+    return (createInt16(value));
+  if (type == eOperandType::Int32)
+    return (createInt32(value));
+  if (type == eOperandType::Double)
+    return (createDouble(value));
+  if (type == eOperandType::Float)
+    return (createFloat(value));
+  return (createBigDecimal(value));
 }
 /*
 IOperand* Int8::operator+(const IOperand &rhs) const
