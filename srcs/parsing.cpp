@@ -5,6 +5,7 @@
 #include "parsing.hpp"
 #include "commands.hpp"
 #include "value.hpp"
+#include "Exception.hpp"
 #include <cstring>
 #include <regex>
 
@@ -16,10 +17,8 @@ Parsing::Parsing(const char *path) {
   if (file.is_open())
     while (getline(file, tmp))
       content << tmp << std::endl;
-  else {
-    std::cerr << "Exception while opening/reading the file : " << path << std::endl;
-    exit(84);
-  }
+  else
+    throw Exception("Exception while opening/reading the file");
   _content = content.str();
   checkContent();
 }
