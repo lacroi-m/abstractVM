@@ -66,6 +66,8 @@ void				Parsing::suppress_errors() {
       }
   }
   auto it = _clean_map.end();
+  if (it == _clean_map.begin())
+    exit(84);
   it--;
   if (it->second[0] != "exit") {
     std::cerr << "Expected EXIT command in the file" << std::endl;
@@ -84,8 +86,10 @@ void				Parsing::show_me_the_map() {
 std::vector<std::string>	Parsing::split_line(std::string &line) {
   std::vector<std::string>	splited;
   std::string			buf;
-  std::string			mdr =  "^\\s*-?[0-9]{1,10}\\s*$";
-  std::regex                    ints(mdr);
+  std::string			regint =  "^\\s*-?[0-9]{1,10}\\s*$";
+  std::regex                    ints(regint);
+  std::string			regdec =  "^\\s*-?[0-9]{1,10}\\.?[0-9]{1,6}s*$";
+  std::regex                    decimals(regdec);
 
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
@@ -96,11 +100,18 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
   if (splited[0] == "push" || splited[0] == "load" || splited[0] == "assert" || splited[0] == "store") {  
     if (std::strncmp(splited[1].c_str(), "int", 3) == 0) {
       if (std::regex_match(splited[2], ints) == false) {
-	std::cerr << "Bad value in the command : "
+	std::cerr << "Bad integer value in the command : "
 		  << splited[0] << " " << splited[1]
 		  << " of value (" << splited[2] << ")" << std::endl;
 	exit(84);
       }
+    }
+    else {
+      if (std::regex_match(splited[2], decimals) == false)
+	std::cerr << "Bad decimal value in the command : "
+		  << splited[0] << " " << splited[1]
+		  << " of value (" << splited[2] << ")" << std::endl;
+      exit(84);
     }
   }
   return (splited);
