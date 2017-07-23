@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 10:44:16 2017 Maxime Lacroix
-// Last update Sun Jul 23 20:23:38 2017 thomas duchet
+// Last update Sun Jul 23 21:59:25 2017 Maxime Lacroix
 //
 
 
@@ -84,7 +84,7 @@ class	Float: public IOperand // -3.4E+38 to +3.4E+38
 public:
   const float		m_nbr;
   Float(float nbr) : m_nbr(nbr){};
-  virtual std::string toString() const {std::cout<<m_nbr<<" - "<<std::to_string(m_nbr)<<std::endl;return(std::to_string(m_nbr));} //string that represents the instance
+  virtual std::string toString() const {return(std::to_string(m_nbr));} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::Float);} //returnes thr Type of instance
   IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
   IOperand* operator-(const IOperand &rhs) const  {(void)rhs;return (NULL);}

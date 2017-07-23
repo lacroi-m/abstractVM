@@ -7,10 +7,10 @@ push int8(33)
 push int16(42)
 add
 mul
-push double(42.42)
-push int8(2)
+push float(42.4242)
+push float(42.42);
 push int32(42)
 dump
 pop
-assert double(42.42)
+assert float(42.42)
 exit

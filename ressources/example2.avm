@@ -1,8 +1,7 @@
 ;-----------------
 ;-- example.avm --
 ;-----------------
-push int8(1)
-push int8(2)
+push float(2.2)
 dump
 swap
 dump
