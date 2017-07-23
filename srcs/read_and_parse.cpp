@@ -46,7 +46,7 @@ void                            ParseRead::suppress_errors() {
       }
       if (valid == false) {
 	std::cerr << "Error at " << it->first
-                  << " with the command" << it->second[0]
+                  << " with the command " << it->second[0]
                   << std::endl;
         exit(84);
       }
@@ -54,7 +54,7 @@ void                            ParseRead::suppress_errors() {
     else
       if (std::distance(it->second.begin(), it->second.end()) > 1) {
 	std::cerr << "Error at " << it->first
-                  << " with the command" << it->second[0]
+                  << " with the command " << it->second[0]
                   << std::endl;
         exit(84);
       }
@@ -64,7 +64,7 @@ void                            ParseRead::suppress_errors() {
   auto it = _clean_map.end();
   it--;
   if (it->second[0] != "exit") {
-   std::cerr << "Expected EXIT command in the file" << std::endl;
+    std::cerr << "Expected EXIT command in the file" << std::endl;
     exit(84);
   }
 }
@@ -83,6 +83,10 @@ std::vector<std::string>        ParseRead::split_line(std::string &line) {
   std::string                   buf;
   std::string			mdr = "^\\s*-?[0-9]{1,10}\\s*$";
   std::regex			ints(mdr);
+  std::string                   regdec =  "^\\s*-?[0-9]{1,10}\\.?[0-9]{1,6}s*$";
+  std::regex                    decimals(regdec);
+  std::string                   regbigdec =  "^\\s*-?[0-9]{1,10}\\.?[0-9]{1,12}s*$";
+  std::regex                    bigdecimals(regbigdec);
   
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
@@ -94,6 +98,23 @@ std::vector<std::string>        ParseRead::split_line(std::string &line) {
     if (std::strncmp(splited[1].c_str(), "int", 3) == 0) {
       if (std::regex_match(splited[2], ints) == false) {
         std::cerr << "Bad value in the command : "
+                  << splited[0] << " " << splited[1]
+                  << " of value (" << splited[2] << ")" << std::endl;
+        exit(84);
+      }
+    }
+    else if (std::strncmp(splited[1].c_str(), "bigdecimal", 10) == 0\
+	     ) {
+      if (std::regex_match(splited[2], bigdecimals) == false) {
+        std::cerr << "Bad bigdecimal value in the command : "
+                  << splited[0] << " " << splited[1]
+                  << " of value (" << splited[2] << ")" << std::endl;
+        exit(84);
+      }
+    }
+    else {
+      if (std::regex_match(splited[2], decimals) == false) {
+        std::cerr << "Bad decimal value in the command : "
                   << splited[0] << " " << splited[1]
                   << " of value (" << splited[2] << ")" << std::endl;
         exit(84);

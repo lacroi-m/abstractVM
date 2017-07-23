@@ -2,10 +2,10 @@
 ;-- example.avm --
 ;-----------------
 
-push double(33.42)
-push double(42)
+push bigdecimal(4.222222222222)
+push double(4.2222)
 add
 
-push double(44.5.5)
+push double(44.55)
 mul
 exit
