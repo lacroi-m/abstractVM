@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Sun Jul 23 16:12:13 2017 thomas duchet
+// Last update Sun Jul 23 16:51:51 2017 Maxime Lacroix
 //
 
 #include "../incs/Stack.hpp"
@@ -13,6 +13,7 @@
 #include "../incs/Types.hpp"
 #include "../incs/Factory.hpp"
 #include "../incs/value.hpp"
+#include "Exception.hpp"
 
 Stack::Stack() {
   this->commands.push_back("push");
@@ -120,7 +121,7 @@ void                            Stack::my_push(__attribute__((unused))std::vecto
 void                            Stack::my_pop(__attribute__((unused))std::vector<std::string> cmd) {
   std::cout<<"POP"<<std::endl;
   if (stack.empty() == true)
-    my_error("Stack is empty", 84);
+    throw Exception("Cant pop, stack empty");
   else
     stack.pop();
 }
