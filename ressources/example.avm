@@ -12,5 +12,5 @@ push int8(2)
 push int32(42)
 dump
 pop
-assert double (42.42)
+assert double(42.42)
 exit

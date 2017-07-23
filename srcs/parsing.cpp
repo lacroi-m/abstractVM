@@ -107,37 +107,38 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
       }
     }
     else {
-      if (std::regex_match(splited[2], decimals) == false)
+      if (std::regex_match(splited[2], decimals) == false) {
 	std::cerr << "Bad decimal value in the command : "
 		  << splited[0] << " " << splited[1]
 		  << " of value (" << splited[2] << ")" << std::endl;
-      exit(84);
+	exit(84);
+      }
     }
   }
   return (splited);
 }
 
-void					Parsing::checkContent() {
-  std::istringstream			toParse(_content);
-  std::string				tmp;
-  int					i = 1;
+  void					Parsing::checkContent() {
+    std::istringstream			toParse(_content);
+    std::string				tmp;
+    int					i = 1;
 
-  while (getline(toParse, tmp)) {
-    if (tmp.length() > 1 && tmp.c_str()[0] != ';') {
-      if (i < 10)
-	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line0" + std::to_string(i), split_line(tmp)));
-      else	
-	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line" + std::to_string(i), split_line(tmp)));
+    while (getline(toParse, tmp)) {
+      if (tmp.length() > 1 && tmp.c_str()[0] != ';') {
+	if (i < 10)
+	  _clean_map.insert(std::pair<std::string, std::vector<std::string>>("line0" + std::to_string(i), split_line(tmp)));
+	else	
+	  _clean_map.insert(std::pair<std::string, std::vector<std::string>>("line" + std::to_string(i), split_line(tmp)));
+      }
+      if (std::strncmp(tmp.c_str(), "exit", 4) == 0) {
+	suppress_errors();
+	return ;
+      }
+      i++;
     }
-    if (std::strncmp(tmp.c_str(), "exit", 4) == 0) {
-      suppress_errors();
-      return ;
-    }
-    i++;
+    suppress_errors();
   }
-  suppress_errors();
-}
 
-std::map<std::string,std::vector<std::string>, std::less<std::string>>	Parsing::get_map(){
-  return this->_clean_map;
-}
+  std::map<std::string,std::vector<std::string>, std::less<std::string>>	Parsing::get_map(){
+    return this->_clean_map;
+  }
