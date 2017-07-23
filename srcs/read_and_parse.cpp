@@ -86,7 +86,7 @@ std::vector<std::string>        ParseRead::split_line(std::string &line) {
   std::regex                    decimals(regdec);
   std::string                   regbigdec =  "^\\s*-?[0-9]{1,10}\\.?[0-9]{1,12}s*$";
   std::regex                    bigdecimals(regbigdec);
-  
+
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
   std::istringstream            tmp(line);

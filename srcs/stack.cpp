@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Sun Jul 23 17:32:23 2017 thomas duchet
+// Last update Sun Jul 23 19:44:05 2017 thomas duchet
 //
 
 #include "../incs/Stack.hpp"
@@ -99,6 +99,7 @@ void    Stack::manage_func(__attribute__((unused))std::map<std::string, std::vec
 
 void                            Stack::my_push(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"PUSH"<<std::endl;
+  
   if (cmd[1].compare("int8") == 0)
     stack.push(Factory::createOperand(eOperandType::Int8, cmd[2]));
   if (cmd[1].compare("int16") == 0)
@@ -106,11 +107,11 @@ void                            Stack::my_push(__attribute__((unused))std::vecto
   if (cmd[1].compare("int32") == 0)
     stack.push(Factory::createOperand(eOperandType::Int32,cmd[2]));
   if (cmd[1].compare("float") == 0)
-    stack.push(Factory::createOperand(eOperandType::Double,cmd[2]));
-  if (cmd[1].compare("double") == 0)
     stack.push(Factory::createOperand(eOperandType::Float,cmd[2]));
+  if (cmd[1].compare("double") == 0)
+    stack.push(Factory::createOperand(eOperandType::Double,cmd[2]));
   if (cmd[1].compare("bigdecimal") == 0)
-  stack.push(Factory::createOperand(eOperandType::BigDecimal,cmd[2]));
+    stack.push(Factory::createOperand(eOperandType::BigDecimal,cmd[2]));
 }
 
 void                            Stack::my_pop(__attribute__((unused))std::vector<std::string> cmd) {
@@ -166,10 +167,32 @@ void                            Stack::my_swap(__attribute__((unused))std::vecto
 
 void                            Stack::my_assert(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"ASSERT"<<std::endl;
+  IOperand		*tmp;
+  IOperand		*nb_cmd;
+
+  if (stack.empty() == true)
+    throw Exception("can't assert, satck empty");
+  else
+    {
+      tmp = stack.top();
+      if (cmd[1].compare("int8") == 0)
+	nb_cmd = Factory::createOperand(eOperandType::Int8, cmd[2]);
+      if (cmd[1].compare("int16") == 0)
+	nb_cmd = Factory::createOperand(eOperandType::Int16,cmd[2]);
+      if (cmd[1].compare("int32") == 0)
+	nb_cmd = Factory::createOperand(eOperandType::Int32,cmd[2]);
+      if (cmd[1].compare("float") == 0)
+	nb_cmd = Factory::createOperand(eOperandType::Float,cmd[2]);
+      if (cmd[1].compare("double") == 0)
+	nb_cmd = Factory::createOperand(eOperandType::Double,cmd[2]);
+      if (cmd[1].compare("bigdecimal") == 0)
+	nb_cmd = Factory::createOperand(eOperandType::BigDecimal,cmd[2]);
+      if ((tmp->getType() != nb_cmd->getType()) || (tmp->toString().compare(nb_cmd->toString()) != 0))
+	throw Exception ("Assert exception");
+    }
 }
 
 void                            Stack::my_add(__attribute__((unused))std::vector<std::string> cmd) {
-  //  aff_vector(cmd);
   std::cerr<<"ADD"<<std::endl;
 }
 
@@ -198,5 +221,6 @@ void				Stack::my_print(__attribute__((unused))std::vector<std::string> cmd) {
 }
 
 void				Stack::my_exit(__attribute__((unused))std::vector<std::string> cmd) {
+  exit(0);
   std::cerr<<"EXIT"<<std::endl;
 }

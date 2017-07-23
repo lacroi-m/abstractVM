@@ -29,7 +29,7 @@ void				Parsing::suppress_errors() {
   std::vector<std::string>	commands = com->get_commands();
   std::vector<std::string>	value = val->get_values();
   bool				valid = false;
-  
+
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
     valid = false;
     for (std::vector<std::string>::iterator ite = commands.begin(); ite != commands.end(); ++ite) {
@@ -61,7 +61,7 @@ void				Parsing::suppress_errors() {
 	std::cerr << "Error at " << it->first
 		  << " with the command " << it->second[0]
 		  << std::endl;
-	exit(84);	
+	exit(84);
       }
   }
   auto it = _clean_map.end();
@@ -71,7 +71,7 @@ void				Parsing::suppress_errors() {
   if (it->second[0] != "exit")
     throw Exception("Expected EXIT command in the file");
 }
-  
+
 void				Parsing::show_me_the_map() {
   for (std::map<std::string, std::vector<std::string>>::iterator it = _clean_map.begin(); it != _clean_map.end(); ++it) {
     std::cout << "--[" << it->first << "]--" << std::endl;
@@ -96,7 +96,7 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
   while (getline(tmp, buf, ' ')) {
     splited.push_back(buf);
   }
-  if (splited[0] == "push" || splited[0] == "load" || splited[0] == "assert" || splited[0] == "store") {  
+  if (splited[0] == "push" || splited[0] == "load" || splited[0] == "assert" || splited[0] == "store") {
     if (std::strncmp(splited[1].c_str(), "int", 3) == 0) {
       if (std::regex_match(splited[2], ints) == false) {
 	std::cerr << "Bad integer value in the command : "
@@ -134,7 +134,7 @@ void					Parsing::checkContent() {
     if (tmp.length() > 1 && tmp.c_str()[0] != ';') {
       if (i < 10)
 	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line0" + std::to_string(i), split_line(tmp)));
-      else	
+      else
 	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line" + std::to_string(i), split_line(tmp)));
     }
     if (std::strncmp(tmp.c_str(), "exit", 4) == 0) {

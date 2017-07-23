@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 10:44:16 2017 Maxime Lacroix
-// Last update Sun Jul 23 16:45:11 2017 Maxime Lacroix
+// Last update Sun Jul 23 20:23:38 2017 thomas duchet
 //
 
 
@@ -45,18 +45,18 @@ public:
   Int16(std::int16_t nbr) : m_nbr(nbr){};
   
   virtual std::string toString() const {return(std::to_string(m_nbr));} //string that represents the instance
-  virtual eOperandType getType() const {return (eOperandType::Int16);} //returnes thr Type of instance
-  /*  IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
+  eOperandType getType() const {return (eOperandType::Int16);} //returnes thr Type of instance
+    IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
   IOperand* operator-(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator*(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator/(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator%(const IOperand &rhs) const  {(void)rhs;return (NULL);}
-  */
-      IOperand* operator+(const IOperand &rhs) const = 0;
+  /*
+  IOperand* operator+(const IOperand &rhs) const = 0;
     IOperand* operator-(const IOperand &rhs) const = 0;
     IOperand* operator*(const IOperand &rhs) const = 0;
     IOperand* operator/(const IOperand &rhs) const = 0;
-    IOperand* operator%(const IOperand &rhs) const = 0;
+    IOperand* operator%(const IOperand &rhs) const = 0;*/
 };
 
 class	Int32: public IOperand // -2,147,483,648 to 2,147,483,647
@@ -64,19 +64,19 @@ class	Int32: public IOperand // -2,147,483,648 to 2,147,483,647
 public:
   const std::int32_t	m_nbr;
   Int32(std::int32_t nbr) : m_nbr(nbr){};
-  virtual std::string toString() const {return(std::to_string(m_nbr));} //string that represents the instance
+  virtual std::string toString() const {std::cout << std::to_string(m_nbr);return(std::to_string(m_nbr));} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::Int32);} //returnes thr Type of instance
-  /*  IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
+  IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
   IOperand* operator-(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator*(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator/(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator%(const IOperand &rhs) const  {(void)rhs;return (NULL);}
-  */
-    IOperand* operator+(const IOperand &rhs) const = 0;
+
+  /*    IOperand* operator+(const IOperand &rhs) const = 0;
     IOperand* operator-(const IOperand &rhs) const = 0;
     IOperand* operator*(const IOperand &rhs) const = 0;
     IOperand* operator/(const IOperand &rhs) const = 0;
-    IOperand* operator%(const IOperand &rhs) const = 0;
+    IOperand* operator%(const IOperand &rhs) const = 0;*/
 };
 
 class	Float: public IOperand // -3.4E+38 to +3.4E+38
@@ -84,19 +84,19 @@ class	Float: public IOperand // -3.4E+38 to +3.4E+38
 public:
   const float		m_nbr;
   Float(float nbr) : m_nbr(nbr){};
-  virtual std::string toString() const {return(std::to_string(m_nbr));} //string that represents the instance
+  virtual std::string toString() const {std::cout<<m_nbr<<" - "<<std::to_string(m_nbr)<<std::endl;return(std::to_string(m_nbr));} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::Float);} //returnes thr Type of instance
-  /*  IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
+  IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
   IOperand* operator-(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator*(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator/(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator%(const IOperand &rhs) const  {(void)rhs;return (NULL);}
-  */
-  IOperand* operator+(const IOperand &rhs) const = 0;
+ 
+  /*  IOperand* operator+(const IOperand &rhs) const = 0;
   IOperand* operator-(const IOperand &rhs) const = 0;
   IOperand* operator*(const IOperand &rhs) const = 0;
   IOperand* operator/(const IOperand &rhs) const = 0;
-  IOperand* operator%(const IOperand &rhs) const = 0;
+  IOperand* operator%(const IOperand &rhs) const = 0;*/
 };
 
 class	Double: public IOperand // -1.7E+308 to +1.7E+308
@@ -106,17 +106,16 @@ public:
   Double(double nbr) : m_nbr(nbr){};
   virtual std::string toString() const {return(std::to_string(m_nbr));} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::Double);} //returnes thr Type of instance
-  /*  IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
+    IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
   IOperand* operator-(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator*(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator/(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator%(const IOperand &rhs) const  {(void)rhs;return (NULL);}
-  */
-    IOperand* operator+(const IOperand &rhs) const = 0;
+  /*  IOperand* operator+(const IOperand &rhs) const = 0;
     IOperand* operator-(const IOperand &rhs) const = 0;
     IOperand* operator*(const IOperand &rhs) const = 0;
     IOperand* operator/(const IOperand &rhs) const = 0;
-    IOperand* operator%(const IOperand &rhs) const = 0;
+    IOperand* operator%(const IOperand &rhs) const = 0;*/
 
 };
 
