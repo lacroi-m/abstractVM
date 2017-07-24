@@ -8,13 +8,31 @@
 #include "Exception.hpp"
 #include <regex>
 
+std::string             &ParseRead::epur_str(std::string &s)
+{
+  bool          space = false;
+  auto          p = s.begin();
+  for (auto ch : s)
+    if (std::isspace(ch)) {
+      space = p != s.begin();
+    }
+    else {
+      if (space)
+	*p++ = ' ';
+      *p++ = ch;
+      space = false;
+    }
+  s.erase(p, s.end());
+  return (s);
+}
+
 ParseRead::ParseRead(std::istream &cin) {
   std::string		tmp;
   std::stringstream	content;
 
   while (getline(cin, tmp)
 	 && std::strncmp(tmp.c_str(), ";;", 2) != 0)
-    content << tmp << std::endl;
+    content << epur_str(tmp) << std::endl;
   _content = content.str();
   checkContent();
 }
@@ -89,7 +107,7 @@ std::vector<std::string>        ParseRead::split_line(std::string &line) {
 
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
-  std::istringstream            tmp(line);
+  std::istringstream            tmp(epur_str(line));
   while (getline(tmp, buf, ' ')) {
     splited.push_back(buf);
   }

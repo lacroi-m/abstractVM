@@ -9,6 +9,21 @@
 #include <cstring>
 #include <regex>
 
+std::string		&Parsing::epur_str(std::string &s)
+{
+  bool		space = false;
+  auto		p = s.begin();
+  for (auto ch : s)
+    if (std::isspace(ch)) {
+      space = p != s.begin();
+    } else {
+      if (space) *p++ = ' ';
+      *p++ = ch;
+      space = false; }
+  s.erase(p, s.end());
+  return (s);
+}
+
 Parsing::Parsing(const char *path) {
   std::string		tmp;
   std::stringstream	content;
@@ -16,7 +31,7 @@ Parsing::Parsing(const char *path) {
 
   if (file.is_open())
     while (getline(file, tmp))
-      content << tmp << std::endl;
+      content << epur_str(tmp) << std::endl;
   else
     throw Exception("Exception while opening/reading the file");
   _content = content.str();
@@ -92,7 +107,7 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
 
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
-  std::istringstream	       	tmp(line);
+  std::istringstream	       	tmp(epur_str(line));
   while (getline(tmp, buf, ' ')) {
     splited.push_back(buf);
   }

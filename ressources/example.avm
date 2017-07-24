@@ -1,7 +1,7 @@
 ;-----------------
 ;-- example.avm --
 ;-----------------
-push int8(32)
+	push int8(32)
 dump
 push int32(-33)
 dump

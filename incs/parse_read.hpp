@@ -20,6 +20,7 @@ public:
   void		checkContent();
   void		print_me_the_map();
   void		suppress_errors();
+  std::string	&epur_str(std::string &);
   std::map<std::string,std::vector<std::string>, std::less<std::string>> get_map();
   std::vector<std::string>		split_line(std::string&);
 private:
