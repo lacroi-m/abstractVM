@@ -12,6 +12,6 @@ push int8(0)
 dump
 div
 dump
-mult
+mul
 dump
 exit
