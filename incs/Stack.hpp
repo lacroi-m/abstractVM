@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Thu Jul 20 19:35:50 2017 thomas duchet
-// Last update Sun Jul 23 14:06:13 2017 thomas duchet
+// Last update Mon Jul 24 14:07:45 2017 thomas duchet
 //
 
 #ifndef STACK_HPP_
@@ -19,21 +19,25 @@
 class Stack;
 
 typedef  void (Stack::*StackFunc)(std::vector<std::string> cmd);
+//typedef  void (Stack::*registre)();
 
 class	Stack
 {
 private:
   std::vector<std::string>		commands; /* la tableau de tt les commandes */
   std::vector<std::string>		cmd; /* ma commande et ses arguments */
-  std::stack<IOperand *>		stack; /* La stack */ 
+  std::stack<IOperand *>		stack; /* La stack */
 public:
   Stack();
   ~Stack();
 
+  std::vector<IOperand *>		get_registre();
   void					fill_cmd(std::map<std::string,std::vector<std::string>, std::less<std::string>>);
   void					manage_func(std::map<std::string,std::vector<std::string>, std::less<std::string>>);
   std::stack<IOperand *>		get_stack();
   std::vector<std::string>		get_commands();
+  IOperand				*registre_tab[16];
+  //  void					init_register();
   void					fill_ptr_tab();
   StackFunc		                StackFunction[16];
   void					my_push(std::vector<std::string> cmd);

@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Mon Jul 24 10:39:25 2017 Maxime Lacroix
+// Last update Mon Jul 24 14:32:22 2017 thomas duchet
 //
 
 #include "../incs/Stack.hpp"
@@ -31,6 +31,7 @@ Stack::Stack() {
   this->commands.push_back("store");
   this->commands.push_back("print");
   this->commands.push_back("exit");
+
 }
 
 Stack::~Stack() {}
@@ -52,6 +53,13 @@ void				Stack::fill_ptr_tab() {
   this->StackFunction[13] = &Stack::my_print;
   this->StackFunction[14] = &Stack::my_exit;
   this->StackFunction[15] = NULL;
+
+  int i = 0;
+  while (i < 16)
+    {
+      this->registre_tab[i] = NULL;
+      i++;
+    }
 }
 
 std::vector<std::string>	Stack::get_commands() {
@@ -61,6 +69,10 @@ std::vector<std::string>	Stack::get_commands() {
 std::stack<IOperand *>		Stack::get_stack() {
   return this->stack;
 }
+
+/*std::vector<IOperand *>		Stack::get_registre() {
+  return this->registre_tab;
+  }*/
 
 void	aff_vector(std::vector<std::string> vector)
 {
@@ -210,19 +222,56 @@ void                            Stack::my_mul(__attribute__((unused))std::vector
 }
 
 void                            Stack::my_div(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cerr<<"LOAD"<<std::endl;
+  std::cerr<<"DIV"<<std::endl;
 }
 
 void                            Stack::my_load(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"LOAD"<<std::endl;
+  IOperand		*tmp;
+
+  if ((cmd[1].compare("int8") == 0) || (cmd[1].compare("int16") == 0) || (cmd[1].compare("int32") == 0))
+    {
+      if (registre_tab[stoi(cmd[2])] == NULL)
+	throw Exception("Can't load, this register is empty");
+      else
+	{
+	  tmp = registre_tab[stoi(cmd[2])];
+	  stack.push(tmp);
+	}
+    }
+  else
+    throw Exception("can't load, this register isn't integer");
 }
 
 void                            Stack::my_store(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"STORE"<<std::endl;
+  if ((cmd[1].compare("int8") == 0) || (cmd[1].compare("int16") == 0) || (cmd[1].compare("int32") == 0))
+    {
+      std::cout<<cmd[2]<<std::endl;
+      if (stoi(cmd[2]) < 0 || stoi(cmd[2]) > 15)
+	throw Exception("can't store, register doesn't exist");
+      else
+	{
+	  registre_tab[stoi(cmd[2])] = stack.top();
+	  stack.pop();
+	}
+    }
+  else
+    throw Exception("can't store, this register isn't integer");
 }
 
 void				Stack::my_print(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"PRINT"<<std::endl;
+  char				tmp;
+  int				i;
+  if (stack.top()->getType() != eOperandType::Int8)
+    throw Exception("Value at top of stack isn't a 8-bit Integer");
+  else
+    {
+      i = std::stoi(stack.top()->toString());
+      tmp = (char)i;
+      std::cout<<tmp<<std::endl;
+    }
 }
 
 void				Stack::my_exit(__attribute__((unused))std::vector<std::string> cmd) {

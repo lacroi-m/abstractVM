@@ -1,9 +1,12 @@
 ;-----------------
 ;-- example.avm --
 ;-----------------
-push float(2.2)
+push int8(1)
+push int16(2)
 dump
-swap
+store int8(3)
+dump
+load int8(3)
 dump
 exit
 
