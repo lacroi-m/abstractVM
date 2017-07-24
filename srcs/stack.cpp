@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Mon Jul 24 14:32:22 2017 thomas duchet
+// Last update Mon Jul 24 16:19:10 2017 Maxime Lacroix
 //
 
 #include "../incs/Stack.hpp"
@@ -210,6 +210,13 @@ void                            Stack::my_assert(__attribute__((unused))std::vec
 }
 
 void                            Stack::my_add(__attribute__((unused))std::vector<std::string> cmd) {
+  if (stack.size() < 2)
+    throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
+  const IOperand*       first = stack.top();
+  stack.pop();
+  const IOperand*       second = (const IOperand&)*first + (const IOperand&)*stack.top();
+  stack.pop();
+  stack.push(((IOperand*)second));
   std::cerr<<"ADD"<<std::endl;
 }
 

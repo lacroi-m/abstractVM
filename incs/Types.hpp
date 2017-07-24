@@ -5,13 +5,14 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 10:44:16 2017 Maxime Lacroix
-// Last update Mon Jul 24 10:37:37 2017 Maxime Lacroix
+// Last update Mon Jul 24 16:10:26 2017 Maxime Lacroix
 //
 
 
 #ifndef _TYPES_H_
 #define _TYPES_H_
 #include "IOperand.hpp"
+#include "Factory.hpp"
 #include <cstdint>
 #include <cstdlib>
 #include <string>
@@ -25,7 +26,17 @@ public:
   ~Int8();
   virtual std::string toString() const {return(std::to_string(m_nbr));} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::Int8);} //returnes thr Type of instance
-  IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
+  IOperand* operator+(const IOperand &rhs) const {
+    Factory*                                op;
+    if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
+      {
+	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
+	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stoi(rhs.toString())))))));
+	else
+	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stod(rhs.toString())))))));
+      }
+    return (NULL);
+  }
   IOperand* operator-(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator*(const IOperand &rhs) const  {(void)rhs;return (NULL);}
   IOperand* operator/(const IOperand &rhs) const  {(void)rhs;return (NULL);}
