@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Mon Jul 24 16:19:10 2017 Maxime Lacroix
+// Last update Mon Jul 24 18:14:53 2017 thomas duchet
 //
 
 #include "../incs/Stack.hpp"
@@ -27,6 +27,7 @@ Stack::Stack() {
   this->commands.push_back("sub");
   this->commands.push_back("mul");
   this->commands.push_back("div");
+  this->commands.push_back("mod");
   this->commands.push_back("load");
   this->commands.push_back("store");
   this->commands.push_back("print");
@@ -48,11 +49,12 @@ void				Stack::fill_ptr_tab() {
   this->StackFunction[8] = &Stack::my_sub;
   this->StackFunction[9] = &Stack::my_mul;
   this->StackFunction[10] = &Stack::my_div;
-  this->StackFunction[11] = &Stack::my_load;
-  this->StackFunction[12] = &Stack::my_store;
-  this->StackFunction[13] = &Stack::my_print;
-  this->StackFunction[14] = &Stack::my_exit;
-  this->StackFunction[15] = NULL;
+  this->StackFunction[11] = &Stack::my_mod;
+  this->StackFunction[12] = &Stack::my_load;
+  this->StackFunction[13] = &Stack::my_store;
+  this->StackFunction[14] = &Stack::my_print;
+  this->StackFunction[15] = &Stack::my_exit;
+  this->StackFunction[16] = NULL;
 
   int i = 0;
   while (i < 16)
@@ -69,10 +71,6 @@ std::vector<std::string>	Stack::get_commands() {
 std::stack<IOperand *>		Stack::get_stack() {
   return this->stack;
 }
-
-/*std::vector<IOperand *>		Stack::get_registre() {
-  return this->registre_tab;
-  }*/
 
 void	aff_vector(std::vector<std::string> vector)
 {
@@ -222,14 +220,50 @@ void                            Stack::my_add(__attribute__((unused))std::vector
 
 void                            Stack::my_sub(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"SUB"<<std::endl;
+  if (stack.size() < 2)
+    throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
+  const IOperand*       first = stack.top();
+  stack.pop();
+  const IOperand*       second = (const IOperand&)*first - (const IOperand&)*stack.top();
+  stack.pop();
+  stack.push(((IOperand*)second));
+  std::cerr<<"ADD"<<std::endl;
 }
 
 void                            Stack::my_mul(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"MUL"<<std::endl;
+  if (stack.size() < 2)
+    throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
+  const IOperand*       first = stack.top();
+  stack.pop();
+  const IOperand*       second = (const IOperand&)*first * (const IOperand&)*stack.top();
+  stack.pop();
+  stack.push(((IOperand*)second));
+  std::cerr<<"ADD"<<std::endl;
 }
 
 void                            Stack::my_div(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"DIV"<<std::endl;
+  if (stack.size() < 2)
+    throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
+  const IOperand*       first = stack.top();
+  stack.pop();
+  const IOperand*       second = (const IOperand&)*first / (const IOperand&)*stack.top();
+  stack.pop();
+  stack.push(((IOperand*)second));
+  std::cerr<<"ADD"<<std::endl;
+}
+
+void                            Stack::my_mod(__attribute__((unused))std::vector<std::string> cmd) {
+  std::cerr<<"DIV"<<std::endl;
+  if (stack.size() < 2)
+    throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
+  const IOperand*       first = stack.top();
+  stack.pop();
+  const IOperand*       second = (const IOperand&)*first % (const IOperand&)*stack.top();
+  stack.pop();
+  stack.push(((IOperand*)second));
+  std::cerr<<"ADD"<<std::endl;
 }
 
 void                            Stack::my_load(__attribute__((unused))std::vector<std::string> cmd) {

@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Thu Jul 20 19:35:50 2017 thomas duchet
-// Last update Mon Jul 24 14:07:45 2017 thomas duchet
+// Last update Mon Jul 24 18:13:15 2017 thomas duchet
 //
 
 #ifndef STACK_HPP_
@@ -39,7 +39,7 @@ public:
   IOperand				*registre_tab[16];
   //  void					init_register();
   void					fill_ptr_tab();
-  StackFunc		                StackFunction[16];
+  StackFunc		                StackFunction[17];
   void					my_push(std::vector<std::string> cmd);
   void					my_pop(std::vector<std::string> cmd);
   void					my_dump(std::vector<std::string> cmd);
@@ -51,6 +51,7 @@ public:
   void					my_sub(std::vector<std::string> cmd);
   void					my_mul(std::vector<std::string> cmd);
   void					my_div(std::vector<std::string> cmd);
+  void					my_mod(std::vector<std::string> cmd);
   void					my_load(std::vector<std::string> cmd);
   void					my_store(std::vector<std::string> cmd);
   void					my_print(std::vector<std::string> cmd);
