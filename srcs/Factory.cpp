@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 12:45:48 2017 Maxime Lacroix
-// Last update Sun Jul 23 19:47:24 2017 thomas duchet
+// Last update Mon Jul 24 16:25:35 2017 Maxime Lacroix
 //
 
 #include "Factory.hpp"
@@ -15,9 +15,9 @@
 IOperand*	Factory::createInt8(const std::string& value)
 {
   std::int8_t	container(std::stoi(value));
-
-  if (!container)
-    throw Exception("Canot convert '" + value + "' to Int8\n");
+  
+  if (container < -127 && container < 127)
+    throw Exception("Canot convert '" + value + "' to Int8");
   return (dynamic_cast<IOperand *> (new Int8(container)));
 }
 IOperand*	Factory::createInt16(const std::string& value)
@@ -25,7 +25,7 @@ IOperand*	Factory::createInt16(const std::string& value)
   std::int16_t	container(std::stoi(value));
   
   if (!container)
-    throw Exception("Canot convert '" + value + "' to Int16\n");
+    throw Exception("Canot convert '" + value + "' to Int16");
   return (dynamic_cast<IOperand *> (new Int16(container)));
 }
 
@@ -33,7 +33,7 @@ IOperand*	Factory::createInt32(const std::string& value)
 {
    std::int32_t	container(std::stoi(value));
    if (!container)
-    throw Exception("Canot convert '" + value + "' to Int32\n");
+    throw Exception("Canot convert '" + value + "' to Int32");
   return (dynamic_cast<IOperand *> (new Int32(container)));
 }
 
@@ -41,7 +41,7 @@ IOperand*	Factory::createFloat(const std::string& value)
 {
   float		container(std::stof(value));
   if (!container)
-    throw Exception("Canot convert '" + value + "' to Float\n");
+    throw Exception("Canot convert '" + value + "' to Float");
   return (dynamic_cast<IOperand *> (new Float(container)));
 }
 
@@ -49,7 +49,7 @@ IOperand*	Factory::createDouble(const std::string& value)
 {
   double	container(std::stod(value));
   if (!container)
-    throw Exception("Canot convert '" + value + "' to Double\n");
+    throw Exception("Canot convert '" + value + "' to Double");
   return (dynamic_cast<IOperand *> (new Double(container)));
 }
 
