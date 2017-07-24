@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 10:44:16 2017 Maxime Lacroix
-// Last update Mon Jul 24 18:18:45 2017 Maxime Lacroix
+// Last update Mon Jul 24 19:37:42 2017 Maxime Lacroix
 //
 
 
@@ -35,7 +35,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stoi(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -48,7 +48,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stoi(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -60,7 +60,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stoi(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
       }
     return (NULL);
     }
@@ -72,7 +72,7 @@ public:
 	  if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stoi(rhs.toString())))))));
 	  else
-	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stoi(rhs.toString())))))));
+	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
       return (NULL);
   }
@@ -84,7 +84,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr % std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr % std::stoi(rhs.toString())))))));
+	  throw(Exception("cant % with type > INT32"));
       }
     return (NULL);
   }
@@ -112,7 +112,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stoi(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -124,7 +124,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stoi(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -137,7 +137,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stoi(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -149,7 +149,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stod(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stod(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -161,7 +161,7 @@ public:
 	  if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr % std::stoi(rhs.toString())))))));
 	  else
-	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr % std::stoi(rhs.toString())))))));
+	    throw(Exception("cant % with type > INT32"));
       }
       return (NULL);
     }
@@ -188,7 +188,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stoi(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -200,7 +200,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stoi(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -212,7 +212,7 @@ public:
 	  if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stoi(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stoi(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
 	}
       return (NULL);
     }
@@ -224,7 +224,7 @@ public:
 	  if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stoi(rhs.toString())))))));
 	  else
-	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stoi(rhs.toString())))))));
+	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
       return (NULL);
     }
@@ -236,7 +236,7 @@ public:
 	  if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr % std::stoi(rhs.toString())))))));
 	  else
-	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr % std::stoi(rhs.toString())))))));
+	    throw(Exception("cant % with type > INT32"));;
 	}
       return (NULL);
     }
@@ -263,7 +263,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -275,7 +275,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -287,7 +287,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -299,7 +299,7 @@ public:
 	  if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	  else
-	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
+	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
       return (NULL);
   }
@@ -328,7 +328,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
     return (NULL);
   }
@@ -340,7 +340,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
 	else
-	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
+	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
     return (NULL);
     }
@@ -352,7 +352,7 @@ public:
 	  if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
 	  else
-	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
+	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
 	}
       return (NULL);
     }
@@ -364,7 +364,7 @@ public:
 	  if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	  else
-	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
+	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
       return (NULL);
     }

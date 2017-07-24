@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Mon Jul 24 18:14:53 2017 thomas duchet
+// Last update Mon Jul 24 19:42:36 2017 Maxime Lacroix
 //
 
 #include "../incs/Stack.hpp"
@@ -137,8 +137,8 @@ void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
 
   for (std::stack<IOperand*> dump = stack; !dump.empty(); dump.pop())
     {
-      if ((int)eOperandType::Int32 < (int)dump.top()->getType() && (int)dump.top()->getType() != (int)eOperandType::BigDecimal)
-	std::cout << std::stof(dump.top()->toString()) << '\n';
+      if ((int)eOperandType::Int32 > (int)dump.top()->getType() && (int)dump.top()->getType() != (int)eOperandType::BigDecimal)
+	std::cout << std::stoi(dump.top()->toString()) << '\n';
       else
 	std::cout << dump.top()->toString() << '\n';
     }
@@ -210,9 +210,9 @@ void                            Stack::my_assert(__attribute__((unused))std::vec
 void                            Stack::my_add(__attribute__((unused))std::vector<std::string> cmd) {
   if (stack.size() < 2)
     throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
-  const IOperand*       first = stack.top();
+  IOperand*       first = stack.top();
   stack.pop();
-  const IOperand*       second = (const IOperand&)*first + (const IOperand&)*stack.top();
+  IOperand*       second = (IOperand&)*first + (IOperand&)*stack.top();
   stack.pop();
   stack.push(((IOperand*)second));
   std::cerr<<"ADD"<<std::endl;
@@ -221,49 +221,45 @@ void                            Stack::my_add(__attribute__((unused))std::vector
 void                            Stack::my_sub(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"SUB"<<std::endl;
   if (stack.size() < 2)
-    throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
+    throw(Exception("Cant sub. Stack doesnt have atleast 2 elements."));
   const IOperand*       first = stack.top();
   stack.pop();
   const IOperand*       second = (const IOperand&)*first - (const IOperand&)*stack.top();
   stack.pop();
   stack.push(((IOperand*)second));
-  std::cerr<<"ADD"<<std::endl;
 }
 
 void                            Stack::my_mul(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"MUL"<<std::endl;
   if (stack.size() < 2)
-    throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
+    throw(Exception("Cant mul. Stack doesnt have atleast 2 elements."));
   const IOperand*       first = stack.top();
   stack.pop();
   const IOperand*       second = (const IOperand&)*first * (const IOperand&)*stack.top();
   stack.pop();
   stack.push(((IOperand*)second));
-  std::cerr<<"ADD"<<std::endl;
 }
 
 void                            Stack::my_div(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"DIV"<<std::endl;
   if (stack.size() < 2)
-    throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
+    throw(Exception("Cant div. Stack doesnt have atleast 2 elements."));
   const IOperand*       first = stack.top();
   stack.pop();
   const IOperand*       second = (const IOperand&)*first / (const IOperand&)*stack.top();
   stack.pop();
   stack.push(((IOperand*)second));
-  std::cerr<<"ADD"<<std::endl;
 }
 
 void                            Stack::my_mod(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"DIV"<<std::endl;
   if (stack.size() < 2)
-    throw(Exception("Cant add. Stack doesnt have atleast 2 elements."));
+    throw(Exception("Cant mod. Stack doesnt have atleast 2 elements."));
   const IOperand*       first = stack.top();
   stack.pop();
   const IOperand*       second = (const IOperand&)*first % (const IOperand&)*stack.top();
   stack.pop();
   stack.push(((IOperand*)second));
-  std::cerr<<"ADD"<<std::endl;
 }
 
 void                            Stack::my_load(__attribute__((unused))std::vector<std::string> cmd) {
