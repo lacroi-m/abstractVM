@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 10:44:16 2017 Maxime Lacroix
-// Last update Mon Jul 24 17:57:39 2017 Maxime Lacroix
+// Last update Mon Jul 24 18:18:45 2017 Maxime Lacroix
 //
 
 
@@ -50,6 +50,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stoi(rhs.toString())))))));
       }
+    return (NULL);
   }
   IOperand* operator*(const IOperand &rhs) const
   {
@@ -61,6 +62,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stoi(rhs.toString())))))));
       }
+    return (NULL);
     }
   IOperand* operator/(const IOperand &rhs) const
   {
@@ -72,6 +74,7 @@ public:
 	  else
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stoi(rhs.toString())))))));
 	}
+      return (NULL);
   }
   IOperand* operator%(const IOperand &rhs) const
   {
@@ -111,6 +114,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr + std::stoi(rhs.toString())))))));
       }
+    return (NULL);
   }
   IOperand* operator-(const IOperand &rhs) const
   {
@@ -122,6 +126,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stoi(rhs.toString())))))));
       }
+    return (NULL);
   }
   
   IOperand* operator*(const IOperand &rhs) const
@@ -134,6 +139,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stoi(rhs.toString())))))));
       }
+    return (NULL);
   }
   IOperand* operator/(const IOperand &rhs) const
   {
@@ -145,6 +151,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stod(rhs.toString())))))));
       }
+    return (NULL);
   }
   IOperand* operator%(const IOperand &rhs) const
     {
@@ -156,6 +163,7 @@ public:
 	  else
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr % std::stoi(rhs.toString())))))));
       }
+      return (NULL);
     }
       /*
 	IOperand* operator+(const IOperand &rhs) const = 0;
@@ -194,6 +202,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stoi(rhs.toString())))))));
       }
+    return (NULL);
   }
     IOperand* operator*(const IOperand &rhs) const
     {
@@ -205,6 +214,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stoi(rhs.toString())))))));
 	}
+      return (NULL);
     }
     IOperand* operator/(const IOperand &rhs) const
     {
@@ -216,6 +226,7 @@ public:
 	  else
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stoi(rhs.toString())))))));
 	}
+      return (NULL);
     }
     IOperand* operator%(const IOperand &rhs) const
     {
@@ -227,6 +238,7 @@ public:
 	  else
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr % std::stoi(rhs.toString())))))));
 	}
+      return (NULL);
     }
       /*    IOperand* operator+(const IOperand &rhs) const = 0;
 	    IOperand* operator-(const IOperand &rhs) const = 0;
@@ -265,6 +277,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
+    return (NULL);
   }
   IOperand* operator*(const IOperand &rhs) const
   {
@@ -276,6 +289,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
       }
+    return (NULL);
   }
   IOperand* operator/(const IOperand &rhs) const
   {
@@ -287,6 +301,7 @@ public:
 	  else
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
+      return (NULL);
   }
   IOperand* operator%(const IOperand &rhs) const{
     (void)rhs;
@@ -327,6 +342,7 @@ public:
 	else
 	  return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
+    return (NULL);
     }
     IOperand* operator*(const IOperand &rhs) const
     {
@@ -338,6 +354,7 @@ public:
 	  else
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
 	}
+      return (NULL);
     }
     IOperand* operator/(const IOperand &rhs) const
     {
@@ -349,11 +366,13 @@ public:
 	  else
 	    return ((op->createOperand(rhs.getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
+      return (NULL);
     }
     IOperand* operator%(const IOperand &rhs) const
     {
       (void)rhs;
       throw Exception("Cant modulo a float .");
+      return (NULL);
     }      /*  IOperand* operator+(const IOperand &rhs) const = 0;
 	  IOperand* operator-(const IOperand &rhs) const = 0;
 	  IOperand* operator*(const IOperand &rhs) const = 0;
@@ -369,11 +388,11 @@ public:
   virtual std::string toString() const {return(m_nbr);} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::BigDecimal);} //returnes thr Type of instance
   
-  IOperand* operator+(const IOperand &rhs) const{};
-  IOperand* operator-(const IOperand &rhs) const{};
-  IOperand* operator*(const IOperand &rhs) const{};
-  IOperand* operator/(const IOperand &rhs) const{};
-  IOperand* operator%(const IOperand &rhs) const {};
+  IOperand* operator+(const IOperand &rhs) const{(void)rhs;return NULL;};
+  IOperand* operator-(const IOperand &rhs) const{(void)rhs;return NULL;};
+  IOperand* operator*(const IOperand &rhs) const{(void)rhs;return NULL;};
+  IOperand* operator/(const IOperand &rhs) const{(void)rhs;return NULL;};
+  IOperand* operator%(const IOperand &rhs) const{(void)rhs;return NULL;};
 };
 
 #endif /*TYPES_H_*/
