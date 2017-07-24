@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 10:44:16 2017 Maxime Lacroix
-// Last update Sun Jul 23 21:59:25 2017 Maxime Lacroix
+// Last update Mon Jul 24 10:37:37 2017 Maxime Lacroix
 //
 
 
@@ -64,7 +64,7 @@ class	Int32: public IOperand // -2,147,483,648 to 2,147,483,647
 public:
   const std::int32_t	m_nbr;
   Int32(std::int32_t nbr) : m_nbr(nbr){};
-  virtual std::string toString() const {std::cout << std::to_string(m_nbr);return(std::to_string(m_nbr));} //string that represents the instance
+  virtual std::string toString() const {return(std::to_string(m_nbr));} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::Int32);} //returnes thr Type of instance
   IOperand* operator+(const IOperand &rhs) const {(void)rhs;return (NULL);}
   IOperand* operator-(const IOperand &rhs) const  {(void)rhs;return (NULL);}

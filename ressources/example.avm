@@ -1,11 +1,17 @@
 ;-----------------
 ;-- example.avm --
 ;-----------------
-
-push int32(33)
-push int8(33)
+push int8(32)
+dump
+push int32(-33)
+dump
+push int8(34)
+dump
 push int16(42)
+dump
 add
+dump
+push bigdecimal(42)
 mul
 push float(42.4242)
 push float(42.42);
