@@ -2,8 +2,8 @@ VM = 	abstractVM
 
 CXX  = 	g++
 
-CXXFLAGS = -g -Wall -Wextra -Werror -Wfatal-errors -MD -std=c++11 -I./incs/
-#CXXFLAGS = -g -Wall -Wextra -Wfatal-errors -MD -std=c++11 -I./incs/
+#CXXFLAGS = -g -Wall -Wextra -Werror -Wfatal-errors -MD -std=c++11 -I./incs/
+CXXFLAGS = -g -Wall -Wextra -Wfatal-errors -MD -std=c++11 -I./incs/
 
 VMSRCS	 = $(foreach dir,$(shell find srcs -type d),$(wildcard $(dir)/*.cpp))
 
