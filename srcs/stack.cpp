@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Mon Jul 24 19:42:36 2017 Maxime Lacroix
+// Last update Mon Jul 24 19:50:27 2017 Maxime Lacroix
 //
 
 #include "../incs/Stack.hpp"
@@ -140,7 +140,7 @@ void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
       if ((int)eOperandType::Int32 > (int)dump.top()->getType() && (int)dump.top()->getType() != (int)eOperandType::BigDecimal)
 	std::cout << std::stoi(dump.top()->toString()) << '\n';
       else
-	std::cout << dump.top()->toString() << '\n';
+	std::cout << std::stod(dump.top()->toString()) << '\n';
     }
 }
 

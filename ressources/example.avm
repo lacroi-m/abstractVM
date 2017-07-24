@@ -1,17 +1,9 @@
 ;-----------------
 ;-- example.avm --
 ;-----------------
-push int8(8)
-dump
-push int8(8)
+push int16(11)
+push float(22.22)
 dump
 add
-dump
-push int8(-10)
-push int8(0)
-dump
-div
-dump
-mul
 dump
 exit
