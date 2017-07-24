@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 12:45:48 2017 Maxime Lacroix
-// Last update Mon Jul 24 16:25:35 2017 Maxime Lacroix
+// Last update Mon Jul 24 19:06:14 2017 Maxime Lacroix
 //
 
 #include "Factory.hpp"
@@ -14,43 +14,59 @@
 
 IOperand*	Factory::createInt8(const std::string& value)
 {
-  std::int8_t	container(std::stoi(value));
-  
-  if (container < -127 && container < 127)
-    throw Exception("Canot convert '" + value + "' to Int8");
-  return (dynamic_cast<IOperand *> (new Int8(container)));
+  try
+    {
+      std::int8_t	container(std::stoi(value));
+      
+      if (container < -127 && container < 127)
+	throw Exception("Canot convert '" + value + "' to Int16");  
+      return (dynamic_cast<IOperand *> (new Int8(container)));
+    }
+  catch(std::invalid_argument& e){
+    throw Exception("Canot convert '" + value + "' to Int8");}
+  return (NULL);
 }
 IOperand*	Factory::createInt16(const std::string& value)
 {
-  std::int16_t	container(std::stoi(value));
-  
-  if (!container)
-    throw Exception("Canot convert '" + value + "' to Int16");
-  return (dynamic_cast<IOperand *> (new Int16(container)));
+  try
+    {
+      std::int16_t	container(std::stoi(value));
+      return (dynamic_cast<IOperand *> (new Int16(container)));
+    }
+  catch(std::invalid_argument& e){
+    throw Exception("Canot convert '" + value + "' to Int16");}
+  return (NULL);
 }
 
 IOperand*	Factory::createInt32(const std::string& value)
 {
+  try{
    std::int32_t	container(std::stoi(value));
-   if (!container)
-    throw Exception("Canot convert '" + value + "' to Int32");
-  return (dynamic_cast<IOperand *> (new Int32(container)));
+   return (dynamic_cast<IOperand *> (new Int32(container)));
+  }
+  catch(std::invalid_argument& e){
+    throw Exception("Canot convert '" + value + "' to Int32");}
+  return (NULL);
 }
 
 IOperand*	Factory::createFloat(const std::string& value)
 {
-  float		container(std::stof(value));
-  if (!container)
-    throw Exception("Canot convert '" + value + "' to Float");
-  return (dynamic_cast<IOperand *> (new Float(container)));
+  try{
+    float		container(std::stof(value));
+    return (dynamic_cast<IOperand *> (new Float(container)));
+  }
+  catch(std::invalid_argument& e){
+    throw Exception("Canot convert '" + value + "' to Int32");}
 }
 
 IOperand*	Factory::createDouble(const std::string& value)
 {
-  double	container(std::stod(value));
-  if (!container)
-    throw Exception("Canot convert '" + value + "' to Double");
-  return (dynamic_cast<IOperand *> (new Double(container)));
+  try{
+    double	container(std::stod(value));
+    return (dynamic_cast<IOperand *> (new Double(container)));
+  }
+  catch(std::invalid_argument& e){
+    throw Exception("Canot convert '" + value + "' to Int32");}
 }
 
 IOperand*	Factory::createBigDecimal(const std::string& value)
