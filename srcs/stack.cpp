@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Tue Jul 25 16:07:23 2017 thomas duchet
+// Last update Tue Jul 25 16:16:47 2017 Maxime Lacroix
 //
 
 #include "../incs/Stack.hpp"
@@ -136,8 +136,7 @@ std::string			Stack::del_zero(std::string number)
 {
   int		i = number.size();
 
-  while (number[--i] == '0' && i >= 0);
-    i--;
+  while(number[--i] == '0' && i >= 0);
   if (number[i] == '.')
     i--;
   number = number.substr(0, i + 1);
