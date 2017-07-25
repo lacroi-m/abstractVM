@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 12:45:48 2017 Maxime Lacroix
-// Last update Mon Jul 24 19:06:14 2017 Maxime Lacroix
+// Last update Tue Jul 25 15:16:18 2017 Maxime Lacroix
 //
 
 #include "Factory.hpp"
@@ -41,8 +41,11 @@ IOperand*	Factory::createInt16(const std::string& value)
 IOperand*	Factory::createInt32(const std::string& value)
 {
   try{
-   std::int32_t	container(std::stoi(value));
-   return (dynamic_cast<IOperand *> (new Int32(container)));
+    float		tmp(std::stof(value));
+    if ((int)tmp > 2147483647 || (int)tmp < -2147483647)
+      throw (Exception("ovetflow int32"));
+    std::int32_t	container(std::stoi(value));
+    return (dynamic_cast<IOperand *> (new Int32(container)));
   }
   catch(std::invalid_argument& e){
     throw Exception("Canot convert '" + value + "' to Int32");}
@@ -52,7 +55,7 @@ IOperand*	Factory::createInt32(const std::string& value)
 IOperand*	Factory::createFloat(const std::string& value)
 {
   try{
-    float		container(std::stof(value));
+    float		container(std::stod(value));
     return (dynamic_cast<IOperand *> (new Float(container)));
   }
   catch(std::invalid_argument& e){

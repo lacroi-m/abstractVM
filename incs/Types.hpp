@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 10:44:16 2017 Maxime Lacroix
-// Last update Mon Jul 24 19:37:42 2017 Maxime Lacroix
+// Last update Tue Jul 25 15:12:40 2017 Maxime Lacroix
 //
 
 
@@ -37,7 +37,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   
   IOperand* operator-(const IOperand &rhs) const
@@ -50,7 +50,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator*(const IOperand &rhs) const
   {
@@ -62,7 +62,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
     }
   IOperand* operator/(const IOperand &rhs) const
   {
@@ -74,7 +74,7 @@ public:
 	  else
 	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
-      return (NULL);
+      return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator%(const IOperand &rhs) const
   {
@@ -86,7 +86,7 @@ public:
 	else
 	  throw(Exception("cant % with type > INT32"));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
       /*
 	IOperand* operator+(const IOperand &rhs) const = 0;
@@ -103,7 +103,7 @@ public:
   Int16(std::int16_t nbr) : m_nbr(nbr){};
   
   virtual std::string toString() const {return(std::to_string(m_nbr));} //string that represents the instance
-  eOperandType getType() const {return (eOperandType::Int16);} //returnes thr Type of instance
+  eOperandType getType() const {return (eOperandType::Int16);} //returnes thr Type of instane
   IOperand* operator+(const IOperand &rhs) const
   {
     Factory*                                op;
@@ -114,7 +114,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator-(const IOperand &rhs) const
   {
@@ -126,7 +126,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   
   IOperand* operator*(const IOperand &rhs) const
@@ -139,7 +139,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator/(const IOperand &rhs) const
   {
@@ -151,7 +151,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stod(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator%(const IOperand &rhs) const
     {
@@ -163,7 +163,7 @@ public:
 	  else
 	    throw(Exception("cant % with type > INT32"));
       }
-      return (NULL);
+      return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
     }
       /*
 	IOperand* operator+(const IOperand &rhs) const = 0;
@@ -190,7 +190,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator-(const IOperand &rhs) const
   {
@@ -202,7 +202,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
     IOperand* operator*(const IOperand &rhs) const
     {
@@ -214,7 +214,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
 	}
-      return (NULL);
+      return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
     }
     IOperand* operator/(const IOperand &rhs) const
     {
@@ -226,7 +226,7 @@ public:
 	  else
 	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
-      return (NULL);
+      return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
     }
     IOperand* operator%(const IOperand &rhs) const
     {
@@ -238,7 +238,7 @@ public:
 	  else
 	    throw(Exception("cant % with type > INT32"));;
 	}
-      return (NULL);
+      return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
     }
       /*    IOperand* operator+(const IOperand &rhs) const = 0;
 	    IOperand* operator-(const IOperand &rhs) const = 0;
@@ -265,7 +265,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator-(const IOperand &rhs) const
   {
@@ -277,7 +277,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator*(const IOperand &rhs) const
   {
@@ -289,7 +289,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator/(const IOperand &rhs) const
   {
@@ -301,7 +301,7 @@ public:
 	  else
 	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
-      return (NULL);
+      return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator%(const IOperand &rhs) const{
     (void)rhs;
@@ -330,7 +330,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr + std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
   IOperand* operator-(const IOperand &rhs) const
     {
@@ -342,7 +342,7 @@ public:
 	else
 	  return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr - std::stof(rhs.toString())))))));
       }
-    return (NULL);
+    return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
     }
     IOperand* operator*(const IOperand &rhs) const
     {
@@ -354,7 +354,7 @@ public:
 	  else
 	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr * std::stof(rhs.toString())))))));
 	}
-      return (NULL);
+      return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
     }
     IOperand* operator/(const IOperand &rhs) const
     {
@@ -366,13 +366,13 @@ public:
 	  else
 	    return ((op->createOperand(this->getType(), std::to_string(((this->m_nbr / std::stof(rhs.toString())))))));
 	}
-      return (NULL);
+      return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
     }
     IOperand* operator%(const IOperand &rhs) const
     {
-      (void)rhs;
+      Factory*                                op;
       throw Exception("Cant modulo a float .");
-      return (NULL);
+      return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
     }      /*  IOperand* operator+(const IOperand &rhs) const = 0;
 	  IOperand* operator-(const IOperand &rhs) const = 0;
 	  IOperand* operator*(const IOperand &rhs) const = 0;
@@ -388,11 +388,11 @@ public:
   virtual std::string toString() const {return(m_nbr);} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::BigDecimal);} //returnes thr Type of instance
   
-  IOperand* operator+(const IOperand &rhs) const{(void)rhs;return NULL;};
-  IOperand* operator-(const IOperand &rhs) const{(void)rhs;return NULL;};
-  IOperand* operator*(const IOperand &rhs) const{(void)rhs;return NULL;};
-  IOperand* operator/(const IOperand &rhs) const{(void)rhs;return NULL;};
-  IOperand* operator%(const IOperand &rhs) const{(void)rhs;return NULL;};
+  IOperand* operator+(const IOperand &rhs) const{Factory* op;return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));};
+  IOperand* operator-(const IOperand &rhs) const{Factory* op;return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));};
+  IOperand* operator*(const IOperand &rhs) const{Factory* op;return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));};
+  IOperand* operator/(const IOperand &rhs) const{Factory* op;return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));};
+  IOperand* operator%(const IOperand &rhs) const{Factory* op;return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));};
 };
 
 #endif /*TYPES_H_*/
