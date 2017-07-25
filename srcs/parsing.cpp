@@ -71,13 +71,6 @@ void				Parsing::suppress_errors() {
 	exit(84);
       }
     }
-    /*    else
-      if (std::distance(it->second.begin(), it->second.end()) > 1) {
-	std::cerr << "Error at " << it->first
-		  << " with the command " << it->second[0]
-		  << std::endl;
-	exit(84);
-	}*/
   }
   auto it = _clean_map.end();
   if (it == _clean_map.begin())
