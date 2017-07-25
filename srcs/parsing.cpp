@@ -143,9 +143,10 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
 void					Parsing::checkContent() {
   std::istringstream			toParse(_content);
   std::string				tmp;
-  int					i = 1;
+  int					i = 0;
 
   while (getline(toParse, tmp)) {
+    i++;
     if (tmp.length() > 1 && tmp.c_str()[0] != ';') {
       if (i < 10)
 	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line0" + std::to_string(i), split_line(tmp)));
@@ -156,7 +157,6 @@ void					Parsing::checkContent() {
       suppress_errors();
       return ;
     }
-    i++;
   }
   suppress_errors();
 }

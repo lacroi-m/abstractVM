@@ -147,9 +147,11 @@ void					ParseRead::checkContent() {
   int                                   i = 1;
 
   getline(toParse, tmp);
+  _clean_map.insert(std::pair<std::string, std::vector<std::string>>("line0" + std::to_string(i), split_line(tmp)));
   if (tmp.length() < 1)
     exit(84);
   while (getline(toParse, tmp)) {
+    i++;
     if (tmp.length() > 1 && tmp.c_str()[0] != ';') {
       if (i < 10)
 	_clean_map.insert(std::pair<std::string, std::vector<std::string>>("line0" + std::to_string(i), split_line(tmp)));
@@ -160,7 +162,6 @@ void					ParseRead::checkContent() {
       suppress_errors();
       return ;
     }
-    i++;
   }
   suppress_errors();
 }
