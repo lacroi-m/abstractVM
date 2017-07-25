@@ -2,8 +2,8 @@
 ;-- example.avm --
 ;-----------------
 push int16(11)
-push float(22.22)
+push int16(2)
 dump
-add
+mod
 dump
 exit

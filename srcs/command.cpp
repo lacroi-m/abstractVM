@@ -23,6 +23,7 @@ Commands::Commands()
   this->commands.push_back("add");
   this->commands.push_back("sub");
   this->commands.push_back("mul");
+  this->commands.push_back("mod");
   this->commands.push_back("div");
   this->commands.push_back("load");
   this->commands.push_back("store");
