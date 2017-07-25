@@ -2,10 +2,12 @@
 ;-- example.avm --
 ;-----------------
 
-push bigdecimal(4.222222222222)
-push double(4.2222)
-add
+push int8(4)
+push int8(222)
+add ;
 
 push double(44.55)
-mul
+add
 exit
+;        ;
+;       ;
