@@ -1,9 +1,0 @@
-;-----------------
-;-- example.avm --
-;-----------------
-push int16(11)
-push int16(2)
-dump
-mod
-dump
-exit

@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Thu Jul 20 19:35:50 2017 thomas duchet
-// Last update Mon Jul 24 18:13:15 2017 thomas duchet
+// Last update Tue Jul 25 15:51:38 2017 thomas duchet
 //
 
 #ifndef STACK_HPP_
@@ -31,6 +31,7 @@ public:
   Stack();
   ~Stack();
 
+  std::string				del_zero(std::string number);
   std::vector<IOperand *>		get_registre();
   void					fill_cmd(std::map<std::string,std::vector<std::string>, std::less<std::string>>);
   void					manage_func(std::map<std::string,std::vector<std::string>, std::less<std::string>>);
