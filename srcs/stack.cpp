@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Tue Jul 25 14:12:15 2017 thomas duchet
+// Last update Tue Jul 25 16:07:23 2017 thomas duchet
 //
 
 #include "../incs/Stack.hpp"
@@ -132,6 +132,18 @@ void                            Stack::my_pop(__attribute__((unused))std::vector
     stack.pop();
 }
 
+std::string			Stack::del_zero(std::string number)
+{
+  int		i = number.size();
+
+  while (number[--i] == '0' && i >= 0);
+    i--;
+  if (number[i] == '.')
+    i--;
+  number = number.substr(0, i + 1);
+  return number;
+}
+
 void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"DUMP"<<std::endl;
 
@@ -140,7 +152,7 @@ void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
       if ((int)eOperandType::Int32 > (int)dump.top()->getType() && (int)dump.top()->getType() != (int)eOperandType::BigDecimal)
 	std::cout << std::stoi(dump.top()->toString()) << '\n';
       else
-	std::cout << std::stod(dump.top()->toString()) << '\n';
+	std::cout << del_zero(std::to_string(std::stod(dump.top()->toString()))) << '\n';
     }
 }
 
