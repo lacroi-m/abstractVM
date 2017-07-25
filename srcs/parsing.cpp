@@ -95,7 +95,7 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
   std::regex                    ints(regint);
   std::string			regdec = "^\\s*-?([0-9]*[.])?[0-9]{1,6}+s*$";
   std::regex                    decimals(regdec);
-  std::string			regbigdec = "^\\s*-?([0-9]*[.])?[0-9]{1,12}+s*$";
+  std::string			regbigdec = "^\\s*-?([0-9]*[.])?[0-9]+s*$";
 
   std::regex                    bigdecimals(regbigdec);
 
