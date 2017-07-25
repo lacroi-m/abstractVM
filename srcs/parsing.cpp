@@ -100,9 +100,10 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
   std::string			buf;
   std::string			regint =  "^\\s*-?[0-9]{1,10}\\s*$";
   std::regex                    ints(regint);
-  std::string			regdec =  "^\\s*-?[0-9]{1,10}\\.?[0-9]{1,6}s*$";
+  std::string			regdec = "^\\s*-?([0-9]*[.])?[0-9]{1,6}+s*$";
   std::regex                    decimals(regdec);
-  std::string			regbigdec =  "^\\s*-?[0-9]{1,10}\\.?[0-9]{1,12}s*$";
+  std::string			regbigdec = "^\\s*-?([0-9]*[.])?[0-9]{1,12}+s*$";
+
   std::regex                    bigdecimals(regbigdec);
 
   std::replace(line.begin(), line.end(), '(', ' ');

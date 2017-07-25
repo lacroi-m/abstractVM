@@ -100,9 +100,9 @@ std::vector<std::string>        ParseRead::split_line(std::string &line) {
   std::string                   buf;
   std::string			mdr = "^\\s*-?[0-9]{1,10}\\s*$";
   std::regex			ints(mdr);
-  std::string                   regdec =  "^\\s*-?[0-9]{1,10}\\.?[0-9]{1,6}s*$";
+  std::string                   regdec =  "^\\s*-?([0-9]*[.])?[0-9]{1,6}+s*$";
   std::regex                    decimals(regdec);
-  std::string                   regbigdec =  "^\\s*-?[0-9]{1,10}\\.?[0-9]{1,12}s*$";
+  std::string                   regbigdec = "^\\s*-?([0-9]*[.])?[0-9]{1,12}+s*$";
   std::regex                    bigdecimals(regbigdec);
 
   std::replace(line.begin(), line.end(), '(', ' ');
@@ -120,8 +120,7 @@ std::vector<std::string>        ParseRead::split_line(std::string &line) {
         exit(84);
       }
     }
-    else if (std::strncmp(splited[1].c_str(), "bigdecimal", 10) == 0\
-	     ) {
+    else if (std::strncmp(splited[1].c_str(), "bigdecimal", 10) == 0) {
       if (std::regex_match(splited[2], bigdecimals) == false) {
         std::cerr << "Bad bigdecimal value in the command : "
                   << splited[0] << " " << splited[1]
