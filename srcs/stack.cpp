@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Mon Jul 24 19:50:27 2017 Maxime Lacroix
+// Last update Tue Jul 25 14:12:15 2017 thomas duchet
 //
 
 #include "../incs/Stack.hpp"
@@ -224,7 +224,7 @@ void                            Stack::my_sub(__attribute__((unused))std::vector
     throw(Exception("Cant sub. Stack doesnt have atleast 2 elements."));
   const IOperand*       first = stack.top();
   stack.pop();
-  const IOperand*       second = (const IOperand&)*first - (const IOperand&)*stack.top();
+  const IOperand*       second = (const IOperand&)*stack.top() - (const IOperand&)*first;
   stack.pop();
   stack.push(((IOperand*)second));
 }
@@ -246,7 +246,7 @@ void                            Stack::my_div(__attribute__((unused))std::vector
     throw(Exception("Cant div. Stack doesnt have atleast 2 elements."));
   const IOperand*       first = stack.top();
   stack.pop();
-  const IOperand*       second = (const IOperand&)*first / (const IOperand&)*stack.top();
+  const IOperand*       second = (const IOperand&)*stack.top() - (const IOperand&)*first;
   stack.pop();
   stack.push(((IOperand*)second));
 }
@@ -257,7 +257,7 @@ void                            Stack::my_mod(__attribute__((unused))std::vector
     throw(Exception("Cant mod. Stack doesnt have atleast 2 elements."));
   const IOperand*       first = stack.top();
   stack.pop();
-  const IOperand*       second = (const IOperand&)*first % (const IOperand&)*stack.top();
+  const IOperand*       second = (const IOperand&)*stack.top() - (const IOperand&)*first;
   stack.pop();
   stack.push(((IOperand*)second));
 }
