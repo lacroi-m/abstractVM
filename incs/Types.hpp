@@ -1,4 +1,4 @@
-// Last update Wed Jul 26 12:36:45 2017 Maxime Lacroix
+// Last update Wed Jul 26 15:00:56 2017 Maxime Lacroix
 //
 
 
@@ -19,7 +19,7 @@ public:
   double	m_nbr;
   Int8(const double& nbr) : m_nbr(nbr){};
   ~Int8();
-  virtual std::string toString() const {std::stringstream ss; std::string con;ss<<m_nbr;ss>>con;return(con);} //string that represents the instance
+  virtual std::string toString() const {std::stringstream ss; std::string con;ss<<m_nbr;ss>>con;return(con);}
   virtual eOperandType getType() const {return (eOperandType::Int8);} //returnes thr Type of instance
   IOperand* operator+(const IOperand &rhs) const
   {
@@ -27,10 +27,6 @@ public:
     
     std::stringstream ss;
     double	add;
-    /*    double add2;
-    std::int32_t add3;
-    float	add4;
-    double	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -55,12 +51,8 @@ public:
     
     std::stringstream ss;
     float	add;
-    //float	add;
-    /*    std::int16_t add2;
-	  std::int32_t add3;
-	  float	add4;
-    double	add5;*/
     std::string str;
+    
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
 	ss << rhs.toString();
@@ -84,10 +76,7 @@ public:
     
     std::stringstream ss;
     double add;
-    /*    std::int16_t add2;
-    std::int32_t add3;
-    float	add4;
-    double	add5;*/
+    
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -111,11 +100,8 @@ public:
     
     std::stringstream ss; //std::string con;//ss<<m_nbr;ss>>con;
     double	add;
-    /*    std::int16_t add2;
-	  std::int32_t add3;
-    float	add4;
-    double	add5;*/
     std::string str;
+    
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
 	ss << rhs.toString();
@@ -141,10 +127,6 @@ public:
     std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
     std::int16_t	add;
     std::int16_t	nbr;
-    /*    std::int16_t add2;
-    std::int32_t add3;
-    float	add4;
-    double	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -170,7 +152,6 @@ public:
 class	Int16: public IOperand // -32,768 to 32,767
 {
 public:
-  //  const std::int16_t	m_nbr;
   double	m_nbr;
   Int16(double nbr) : m_nbr(nbr){};
   
@@ -182,12 +163,8 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss;// std::string con;ss<<m_nbr;ss>>con;
-    //  double	add;
+    std::stringstream ss;
     double add;
-    /*    std::double add3;
-    float	add4;
-    int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -210,12 +187,7 @@ public:
     Factory*                                op;
     
     std::stringstream ss;
-    //int8_t	add;
-    //float	add;
     double add;
-    /*std::double add3;
-      float	add4;
-      int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -238,12 +210,8 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss;// std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     double	add;
-    //int16_t add;
-    /*std::double add;
-    float	add;
-    int16_t	add;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -265,12 +233,8 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss;// std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     double	add;
-    //int16_t add;
-    /* std::double add;
-    float	add;
-    int16_t	add;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -297,10 +261,6 @@ public:
     std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
     std::int16_t	add;
     std::int16_t	nbr;
-    //    int add;
-    /*std::int32_t add3;
-    float	add4;
-    int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -337,10 +297,7 @@ public:
     Factory*                                op;
     
     std::stringstream ss;
-    //  double	add;
-    //int16_t add;
     double add;
-    /*float	add4;*/
     double	addup;
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
@@ -366,12 +323,7 @@ public:
     Factory*                                op;
     
     std::stringstream ss;
-    //int8_t	add;
-    //float	add;
-    //int16_t add;
     double add;
-    /*float	add4;
-	int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -395,11 +347,7 @@ public:
     Factory*                                op;
     
     std::stringstream ss;
-    //    int8_t	add;
-    //    int16_t add;
     double add;
-      /*float	add;
-    int16_t	add;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -422,11 +370,7 @@ public:
     Factory*                                op;
     
     std::stringstream ss;
-    // int8_t	add;
     double add;
-    /* std::double add;
-    float	add;
-    int16_t	add;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -450,13 +394,9 @@ public:
   {
         Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
-    //int8_t	add;
+    std::stringstream ss;
     std::int32_t add;
     std::int32_t nbr;
-    /*std::double add3;
-    float	add4;
-    int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -492,12 +432,8 @@ public:
   {
     Factory*                                op;
 
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     float add;
-    /*    std::int16_t add2;
-    std::double add3;
-    float	add4;
-    int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -520,10 +456,6 @@ public:
     
     std::stringstream ss;
     float	add;
-    /*    std::int16_t add2;
-    std::double add3;
-    float	add4;
-    int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -551,12 +483,8 @@ public:
   {
       Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     float	add;
-    /*    std::int16_t add2;
-    std::int32_t add3;
-    float	add4;
-    int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -579,12 +507,8 @@ public:
   {
   Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     float	add;
-    /*    std::int16_t add2;
-    std::int32_t add3;
-    float	add4;
-    int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -623,13 +547,9 @@ public:
     {
       Factory*                                op;
       
-      std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+      std::stringstream ss;
       double	add;
-    /*    std::int16_t add2;
-    std::int32_t add3;
-    float	add4;
-    double	add5;*/
-    std::string str;
+      std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
 	ss << rhs.toString();
@@ -650,12 +570,8 @@ public:
   {
       Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     double	add;
-    /*    std::int16_t add2;
-    std::int32_t add3;
-    float	add4;
-    double	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -685,10 +601,6 @@ public:
     
     std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
     double	add;
-    /*    std::int16_t add2;
-    std::int32_t add3;
-    float	add4;
-    double	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
@@ -711,12 +623,8 @@ public:
     {
       Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     double	add;
-    /*    std::int16_t add2;
-    std::int32_t add3;
-    float	add4;
-    double	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
