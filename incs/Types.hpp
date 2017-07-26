@@ -1,11 +1,4 @@
-//
-// Types.hpp for  in /home/lacroi_m/pisicne/abstractVM_2016
-// 
-// Made by Maxime Lacroix
-// Login   <lacroi_m@epitech.net>
-// 
-// Started on  Fri Jul 21 10:44:16 2017 Maxime Lacroix
-// Last update Wed Jul 26 04:50:28 2017 Maxime Lacroix
+// Last update Wed Jul 26 11:07:21 2017 Maxime Lacroix
 //
 
 
@@ -32,7 +25,7 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     std::int8_t	add;
     /*    std::int16_t add2;
     std::int32_t add3;
@@ -44,6 +37,7 @@ public:
 	ss << rhs.toString();
 	ss >> add;
 	add = m_nbr + add;;
+	ss.clear();
 	ss << add;
 	ss >> str;
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
@@ -58,7 +52,7 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     int8_t	add;
     //float	add;
     /*    std::int16_t add2;
@@ -114,7 +108,7 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss; //std::string con;//ss<<m_nbr;ss>>con;
     int8_t	add;
     /*    std::int16_t add2;
     std::int32_t add3;
@@ -183,7 +177,7 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;ss<<m_nbr;ss>>con;
+    std::stringstream ss;// std::string con;ss<<m_nbr;ss>>con;
     //  std::int8_t	add;
     int16_t add;
     /*    std::int32_t add3;
@@ -194,18 +188,14 @@ public:
       {
 	ss << rhs.toString();
 	ss >> add;
-	std::cout << "add = " << add << std::endl;
-	add += (std::int8_t)m_nbr;
+	add = m_nbr + add;
+	ss.clear();
 	ss << add;
 	ss >> str;
-	std::cerr << "str = " << str << "m_nbr" << m_nbr << "add" << add << std::endl;
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(this->getType(), str)));
 	else
-	  {
-	    std::cerr << "str = " << str << "m_nbr" << m_nbr << "add" << add << std::endl;
-	    return ((IOperand*)(op->createOperand(rhs.getType(), str)));
-	  }
+	  return ((IOperand*)(op->createOperand(rhs.getType(), str)));
       }
     return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
@@ -214,7 +204,7 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     //int8_t	add;
     //float	add;
     int16_t add;
@@ -243,8 +233,8 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
-    int8_t	add;
+    std::stringstream ss;// std::string con;//ss<<m_nbr;ss>>con;
+    int16_t	add;
     //int16_t add;
     /*std::int32_t add;
     float	add;
@@ -270,8 +260,8 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
-    int8_t	add;
+    std::stringstream ss;// std::string con;//ss<<m_nbr;ss>>con;
+    int16_t	add;
     //int16_t add;
     /* std::int32_t add;
     float	add;
@@ -300,7 +290,7 @@ public:
     Factory*                                op;
     
     std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
-    int8_t	add;
+    int16_t	add;
     //    int add;
     /*std::int32_t add3;
     float	add4;
@@ -338,18 +328,21 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     //  std::int8_t	add;
     //int16_t add;
     std::int32_t add;
-	  /*float	add4;
-    int16_t	add5;*/
+    /*float	add4;*/
+    double	addup;
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
 	ss << rhs.toString();
 	ss >> add;
-	add = m_nbr + add;;
+	ss >> addup;
+	add = m_nbr + add;
+	addup = m_nbr + addup;
+	ss.clear();
 	ss << add;
 	ss >> str;
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
@@ -364,7 +357,7 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     //int8_t	add;
     //float	add;
     //int16_t add;
@@ -393,7 +386,7 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     //    int8_t	add;
     //    int16_t add;
     std::int32_t add;
@@ -420,7 +413,7 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     // int8_t	add;
     std::int32_t add;
     /* std::int32_t add;
@@ -498,7 +491,7 @@ public:
       {
 	ss << rhs.toString();
 	ss >> add;
-	add = add + m_nbr;
+	add = m_nbr + add;
 	ss.clear();
 	ss << add;
 	ss >> str;
@@ -514,7 +507,7 @@ public:
   {
       Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
+    std::stringstream ss;
     float	add;
     /*    std::int16_t add2;
     std::int32_t add3;
@@ -531,7 +524,6 @@ public:
 	ss >> str;
 	if (add == 0)
 	  {
-	    
 	    str.clear();
 	    str = "0";
 	  }
@@ -724,7 +716,6 @@ public:
 	add = m_nbr / add;
 	ss.clear();
 	ss << add;
-	std::cout << "value is " << add << "str is" << std::endl;
 	ss >> str;
 	
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)

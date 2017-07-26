@@ -1,10 +1,10 @@
 ;-----------------
 ;-- example.avm --
 ;-----------------
-push int16(1)
+push int32(8008)
+push int32(1)
 dump
-push float(1.01)
 dump
-div
+add
 dump
 exit
