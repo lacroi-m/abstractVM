@@ -3,7 +3,7 @@
 ;-----------------
 push int16(1)
 dump
-push float(1.01)
+push float(1.0;1)
 dump
 div
 dump

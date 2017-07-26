@@ -99,10 +99,6 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
 
   std::regex                    bigdecimals(regbigdec);
 
-  std::size_t semicol = line.find(";");
-  std::size_t par = line.find(")");
-  if (semicol < par)
-    throw Exception("Unfinished command");
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
   std::istringstream	       	tmp(epur_str(line));
@@ -134,6 +130,11 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
 	exit(84);
       }
     }
+  }
+  if (std::distance(splited.begin(), splited.end()) > 2) {
+    std::size_t pos = splited[2].find(";");
+    if (pos != std::string::npos)
+      throw Exception("Don't put semicolumn in a value bruh");
   }
   return (splited);
 }
