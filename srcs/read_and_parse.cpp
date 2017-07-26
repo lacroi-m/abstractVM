@@ -7,6 +7,7 @@
 #include "value.hpp"
 #include "Exception.hpp"
 #include <regex>
+#include <string>
 
 std::string             &ParseRead::epur_str(std::string &s)
 {
@@ -136,6 +137,11 @@ std::vector<std::string>        ParseRead::split_line(std::string &line) {
         exit(84);
       }
     }
+  }
+  if (std::distance(splited.begin(), splited.end()) > 2) {
+    std::size_t pos = splited[2].find(";");
+    if (pos != std::string::npos)
+      throw Exception("Don't put semicolumn in a value bruh");
   }
   return (splited);
 }

@@ -131,6 +131,11 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
       }
     }
   }
+  if (std::distance(splited.begin(), splited.end()) > 2) {
+    std::size_t pos = splited[2].find(";");
+    if (pos != std::string::npos)
+      throw Exception("Don't put semicolumn in a value bruh");
+  }
   return (splited);
 }
 
