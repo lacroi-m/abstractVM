@@ -5,14 +5,14 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Tue Jul 25 16:16:47 2017 Maxime Lacroix
+// Last update Wed Jul 26 04:46:20 2017 Maxime Lacroix
 //
 
-#include "../incs/Stack.hpp"
-#include "../incs/IOperand.hpp"
-#include "../incs/Types.hpp"
-#include "../incs/Factory.hpp"
-#include "../incs/value.hpp"
+#include "Stack.hpp"
+#include "IOperand.hpp"
+#include "Types.hpp"
+#include "Factory.hpp"
+#include "value.hpp"
 #include "Exception.hpp"
 
 Stack::Stack() {
@@ -107,7 +107,8 @@ void    Stack::manage_func(__attribute__((unused))std::map<std::string, std::vec
   }
 }
 
-void                            Stack::my_push(__attribute__((unused))std::vector<std::string> cmd) {
+void                            Stack::my_push(__attribute__((unused))std::vector<std::string> cmd)
+{
   std::cerr<<"PUSH"<<std::endl;
   
   if (cmd[1].compare("int8") == 0)
@@ -136,10 +137,14 @@ std::string			Stack::del_zero(std::string number)
 {
   int		i = number.size();
 
-  while(number[--i] == '0' && i >= 0);
-  if (number[i] == '.')
-    i--;
-  number = number.substr(0, i + 1);
+  if (number.find(".") != std::string::npos)
+    {
+      while(number[--i] == '0' && i >= 0);
+      if (number[i] == '.')
+	i--;
+      number = number.substr(0, i + 1);
+      return number;
+    }
   return number;
 }
 
@@ -147,12 +152,7 @@ void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"DUMP"<<std::endl;
 
   for (std::stack<IOperand*> dump = stack; !dump.empty(); dump.pop())
-    {
-      if ((int)eOperandType::Int32 > (int)dump.top()->getType() && (int)dump.top()->getType() != (int)eOperandType::BigDecimal)
-	std::cout << std::stoi(dump.top()->toString()) << '\n';
-      else
-	std::cout << del_zero(std::to_string(std::stod(dump.top()->toString()))) << '\n';
-    }
+    std::cout << del_zero(dump.top()->toString()) << std::endl;
 }
 
 void                            Stack::my_clear(__attribute__((unused))std::vector<std::string> cmd) {
@@ -257,18 +257,18 @@ void                            Stack::my_div(__attribute__((unused))std::vector
     throw(Exception("Cant div. Stack doesnt have atleast 2 elements."));
   const IOperand*       first = stack.top();
   stack.pop();
-  const IOperand*       second = (const IOperand&)*stack.top() - (const IOperand&)*first;
+  const IOperand*       second = (const IOperand&)*first / (const IOperand&)*stack.top();
   stack.pop();
   stack.push(((IOperand*)second));
 }
 
 void                            Stack::my_mod(__attribute__((unused))std::vector<std::string> cmd) {
-  std::cerr<<"DIV"<<std::endl;
+  std::cerr<<"MOD"<<std::endl;
   if (stack.size() < 2)
     throw(Exception("Cant mod. Stack doesnt have atleast 2 elements."));
   const IOperand*       first = stack.top();
   stack.pop();
-  const IOperand*       second = (const IOperand&)*stack.top() - (const IOperand&)*first;
+  const IOperand*       second = (const IOperand&)*first % (const IOperand&)*stack.top();
   stack.pop();
   stack.push(((IOperand*)second));
 }

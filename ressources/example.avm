@@ -1,8 +1,10 @@
 ;-----------------
 ;-- example.avm --
 ;-----------------
-push bigdecimal(1100000000000000000000023432321231111)
+push int16(1)
 dump
-mod
+push float(1.01)
+dump
+div
 dump
 exit

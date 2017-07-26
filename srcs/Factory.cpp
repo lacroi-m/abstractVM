@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 12:45:48 2017 Maxime Lacroix
-// Last update Tue Jul 25 15:16:18 2017 Maxime Lacroix
+// Last update Wed Jul 26 04:05:39 2017 Maxime Lacroix
 //
 
 #include "Factory.hpp"
@@ -14,62 +14,79 @@
 
 IOperand*	Factory::createInt8(const std::string& value)
 {
-  try
-    {
-      std::int8_t	container(std::stoi(value));
-      
-      if (container < -127 && container < 127)
-	throw Exception("Canot convert '" + value + "' to Int16");  
-      return (dynamic_cast<IOperand *> (new Int8(container)));
-    }
+
+    try{
+    std::string			valuee(value);
+    std::stringstream		ss;
+    ss << valuee;
+    std::int8_t			container;
+    ss >> container;
+    
+    return (dynamic_cast<IOperand *> (new Float(container)));
+  }
   catch(std::invalid_argument& e){
-    throw Exception("Canot convert '" + value + "' to Int8");}
-  return (NULL);
+    throw Exception("Canot convert to Float");}
 }
+
 IOperand*	Factory::createInt16(const std::string& value)
 {
-  try
-    {
-      std::int16_t	container(std::stoi(value));
-      return (dynamic_cast<IOperand *> (new Int16(container)));
-    }
+    try{
+    std::string			valuee(value);
+    std::stringstream		ss;
+    ss << valuee;
+    std::int16_t			container;
+    ss >> container;
+    
+    return (dynamic_cast<IOperand *> (new Int16(container)));
+  }
   catch(std::invalid_argument& e){
-    throw Exception("Canot convert '" + value + "' to Int16");}
-  return (NULL);
+    throw Exception("Canot convert to Float");}
 }
 
 IOperand*	Factory::createInt32(const std::string& value)
 {
-  try{
-    float		tmp(std::stof(value));
-    if ((int)tmp > 2147483647 || (int)tmp < -2147483647)
-      throw (Exception("ovetflow int32"));
-    std::int32_t	container(std::stoi(value));
+
+    try{
+    std::string			valuee(value);
+    std::stringstream		ss;
+    ss << valuee;
+    std::int32_t			container;
+    ss >> container;
+    
     return (dynamic_cast<IOperand *> (new Int32(container)));
   }
   catch(std::invalid_argument& e){
-    throw Exception("Canot convert '" + value + "' to Int32");}
-  return (NULL);
+    throw Exception("Canot convert to Float");}
 }
 
 IOperand*	Factory::createFloat(const std::string& value)
 {
   try{
-    float		container(std::stod(value));
+    std::string			valuee(value);
+    std::stringstream		ss;
+    ss << valuee;
+    float			container;
+    ss >> container;
+    
     return (dynamic_cast<IOperand *> (new Float(container)));
   }
   catch(std::invalid_argument& e){
-    throw Exception("Canot convert '" + value + "' to Int32");}
+    throw Exception("Canot convert to Float");}
 }
 
 IOperand*	Factory::createDouble(const std::string& value)
 {
-  try{
-    double	container(std::stod(value));
+    try{
+    std::string			valuee(value);
+    std::stringstream		ss;
+    ss << valuee;
+    double			container;
+    ss >> container;
+    
     return (dynamic_cast<IOperand *> (new Double(container)));
   }
   catch(std::invalid_argument& e){
-    throw Exception("Canot convert '" + value + "' to Int32");}
+    throw Exception("Canot convert to Double");}
 }
 
 IOperand*	Factory::createBigDecimal(const std::string& value)
@@ -94,47 +111,3 @@ IOperand*	 Factory::createOperand(eOperandType type, const std::string& value)
     return (test.createFloat(value));
   return (test.createBigDecimal(value));
 }
-/*
-IOperand* Int8::operator+(const IOperand &rhs) const
-{
-  //  Find biggiest type between both
-  //  Operate berween both and stock and return in the highst
-  switch (rhd.getType())
-    {
-    case: eOperandTtpe::Int8
-	;
-    case: eOperandTtpe::Int16
-	;
-    case: eOperandTtpe::Int32
-	;
-    case: eOperandTtpe::Float
-	;
-    case: eOperandTtpe::Double
-	;
-    case: eOperandTtpe::BigDecimal
-	;
-    case: eOperandTtpe::Int8
-	;
-    }
-  m_nbr += rhs;
-  return *this;
-}
-IOperand* operator-(const IOperand &rhs) const
-{
-  m_nbr  -= rhs;
-  return *this;
-}
-IOperand* operator*(const IOperand &rhs) const
-{
-  m_nbr  *= rhs;
-  return *this;
-}
-IOperand* operator/(const IOperand &rhs) const
-{
-  m_nbr = m_nbr / rhs;
-  return *this;
-}
-IOperand* operator%(const IOperand &rhs) const {
-  m_nbr %= rhs;
-  return *this;
-*/
