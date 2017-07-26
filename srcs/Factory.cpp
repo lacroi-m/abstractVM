@@ -5,7 +5,7 @@
 // Login   <lacroi_m@epitech.net>
 // 
 // Started on  Fri Jul 21 12:45:48 2017 Maxime Lacroix
-// Last update Wed Jul 26 04:05:39 2017 Maxime Lacroix
+// Last update Wed Jul 26 12:05:59 2017 Maxime Lacroix
 //
 
 #include "Factory.hpp"
@@ -19,10 +19,10 @@ IOperand*	Factory::createInt8(const std::string& value)
     std::string			valuee(value);
     std::stringstream		ss;
     ss << valuee;
-    std::int8_t			container;
+    std::int16_t			container;
     ss >> container;
     
-    return (dynamic_cast<IOperand *> (new Float(container)));
+    return (dynamic_cast<IOperand *> (new Int8(container)));
   }
   catch(std::invalid_argument& e){
     throw Exception("Canot convert to Float");}

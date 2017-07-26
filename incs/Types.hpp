@@ -1,4 +1,4 @@
-// Last update Wed Jul 26 11:07:21 2017 Maxime Lacroix
+// Last update Wed Jul 26 12:36:45 2017 Maxime Lacroix
 //
 
 
@@ -16,8 +16,8 @@
 class	Int8: public IOperand// -128 to 127
 {
 public:
-  std::int8_t	m_nbr;
-  Int8(const std::int8_t& nbr) : m_nbr(nbr){};
+  double	m_nbr;
+  Int8(const double& nbr) : m_nbr(nbr){};
   ~Int8();
   virtual std::string toString() const {std::stringstream ss; std::string con;ss<<m_nbr;ss>>con;return(con);} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::Int8);} //returnes thr Type of instance
@@ -26,17 +26,18 @@ public:
     Factory*                                op;
     
     std::stringstream ss;
-    std::int8_t	add;
-    /*    std::int16_t add2;
+    double	add;
+    /*    double add2;
     std::int32_t add3;
     float	add4;
     double	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
+
 	ss << rhs.toString();
 	ss >> add;
-	add = m_nbr + add;;
+	add = m_nbr + add;
 	ss.clear();
 	ss << add;
 	ss >> str;
@@ -53,7 +54,7 @@ public:
     Factory*                                op;
     
     std::stringstream ss;
-    int8_t	add;
+    float	add;
     //float	add;
     /*    std::int16_t add2;
 	  std::int32_t add3;
@@ -81,8 +82,8 @@ public:
   {
     Factory*                                op;
     
-    std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
-    int8_t	add;
+    std::stringstream ss;
+    double add;
     /*    std::int16_t add2;
     std::int32_t add3;
     float	add4;
@@ -109,9 +110,9 @@ public:
     Factory*                                op;
     
     std::stringstream ss; //std::string con;//ss<<m_nbr;ss>>con;
-    int8_t	add;
+    double	add;
     /*    std::int16_t add2;
-    std::int32_t add3;
+	  std::int32_t add3;
     float	add4;
     double	add5;*/
     std::string str;
@@ -138,7 +139,8 @@ public:
         Factory*                                op;
     
     std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
-    int8_t	add;
+    std::int16_t	add;
+    std::int16_t	nbr;
     /*    std::int16_t add2;
     std::int32_t add3;
     float	add4;
@@ -146,9 +148,12 @@ public:
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
+	ss << m_nbr;
+	ss >> nbr;
+	ss.clear();
 	ss << rhs.toString();
 	ss >> add;
-	add = m_nbr % add;
+	add = nbr % add;
 	ss.clear();
 	ss << add;
 	ss >> str;
@@ -156,7 +161,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), str)));
 	else
-	  return ((IOperand*)(op->createOperand(this->getType(), str)));
+	  throw(Exception("cant % a float or double"));
       }
     return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
@@ -166,8 +171,8 @@ class	Int16: public IOperand // -32,768 to 32,767
 {
 public:
   //  const std::int16_t	m_nbr;
-  int16_t	m_nbr;
-  Int16(std::int16_t nbr) : m_nbr(nbr){};
+  double	m_nbr;
+  Int16(double nbr) : m_nbr(nbr){};
   
   virtual std::string toString() const {std::stringstream ss; std::string con;ss<<m_nbr;ss>>con;return(con);} //string that represents the instance
   eOperandType getType() const {return (eOperandType::Int16);} //returnes thr Type of instane
@@ -178,9 +183,9 @@ public:
     Factory*                                op;
     
     std::stringstream ss;// std::string con;ss<<m_nbr;ss>>con;
-    //  std::int8_t	add;
-    int16_t add;
-    /*    std::int32_t add3;
+    //  double	add;
+    double add;
+    /*    std::double add3;
     float	add4;
     int16_t	add5;*/
     std::string str;
@@ -207,8 +212,8 @@ public:
     std::stringstream ss;
     //int8_t	add;
     //float	add;
-    int16_t add;
-    /*std::int32_t add3;
+    double add;
+    /*std::double add3;
       float	add4;
       int16_t	add5;*/
     std::string str;
@@ -234,9 +239,9 @@ public:
     Factory*                                op;
     
     std::stringstream ss;// std::string con;//ss<<m_nbr;ss>>con;
-    int16_t	add;
+    double	add;
     //int16_t add;
-    /*std::int32_t add;
+    /*std::double add;
     float	add;
     int16_t	add;*/
     std::string str;
@@ -261,9 +266,9 @@ public:
     Factory*                                op;
     
     std::stringstream ss;// std::string con;//ss<<m_nbr;ss>>con;
-    int16_t	add;
+    double	add;
     //int16_t add;
-    /* std::int32_t add;
+    /* std::double add;
     float	add;
     int16_t	add;*/
     std::string str;
@@ -290,7 +295,8 @@ public:
     Factory*                                op;
     
     std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
-    int16_t	add;
+    std::int16_t	add;
+    std::int16_t	nbr;
     //    int add;
     /*std::int32_t add3;
     float	add4;
@@ -298,9 +304,12 @@ public:
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
+	ss << m_nbr;
+	ss >> nbr;
+	ss.clear();
 	ss << rhs.toString();
 	ss >> add;
-	add = m_nbr % add;
+	add = nbr % add;
 	ss.clear();
 	ss << add;
 	ss >> str;
@@ -308,7 +317,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), str)));
 	else
-	  return ((IOperand*)(op->createOperand(this->getType(), str)));
+	  throw(Exception("cant modolilo a double or float <3"));
       }
     return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
@@ -317,21 +326,20 @@ public:
 class	Int32: public IOperand // -2,147,483,648 to 2,147,483,647
 {
 public:
-  const std::int32_t	m_nbr;
-  Int32(std::int32_t nbr) : m_nbr(nbr){};
+  double	m_nbr;
+  Int32(double nbr) : m_nbr(nbr){};
   virtual std::string toString() const {std::stringstream ss; std::string con;ss<<m_nbr;ss>>con;return(con);} //string that represents the instance
   virtual eOperandType getType() const {return (eOperandType::Int32);} //returnes thr Type of instance
 
 
-    
   IOperand* operator+(const IOperand &rhs) const
   {
     Factory*                                op;
     
     std::stringstream ss;
-    //  std::int8_t	add;
+    //  double	add;
     //int16_t add;
-    std::int32_t add;
+    double add;
     /*float	add4;*/
     double	addup;
     std::string str;
@@ -361,7 +369,7 @@ public:
     //int8_t	add;
     //float	add;
     //int16_t add;
-    std::int32_t add;
+    double add;
     /*float	add4;
 	int16_t	add5;*/
     std::string str;
@@ -389,7 +397,7 @@ public:
     std::stringstream ss;
     //    int8_t	add;
     //    int16_t add;
-    std::int32_t add;
+    double add;
       /*float	add;
     int16_t	add;*/
     std::string str;
@@ -415,8 +423,8 @@ public:
     
     std::stringstream ss;
     // int8_t	add;
-    std::int32_t add;
-    /* std::int32_t add;
+    double add;
+    /* std::double add;
     float	add;
     int16_t	add;*/
     std::string str;
@@ -445,15 +453,19 @@ public:
     std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
     //int8_t	add;
     std::int32_t add;
-    /*std::int32_t add3;
+    std::int32_t nbr;
+    /*std::double add3;
     float	add4;
     int16_t	add5;*/
     std::string str;
     if (rhs.getType() != eOperandType::BigDecimal && this->getType() != eOperandType::BigDecimal)
       {
+	ss << m_nbr;
+	ss >> nbr;
+	ss.clear();
 	ss << rhs.toString();
 	ss >> add;
-	add = m_nbr % add;
+	add = nbr % add;
 	ss.clear();
 	ss << add;
 	ss >> str;
@@ -461,7 +473,7 @@ public:
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), str)));
 	else
-	  return ((IOperand*)(op->createOperand(this->getType(), str)));
+	  throw(Exception("Ok bru let me explain I cant modulo a float or double"));
       }
     return(op->createOperand(eOperandType::BigDecimal, rhs.toString()));
   }
@@ -479,11 +491,11 @@ public:
   IOperand* operator+(const IOperand &rhs) const
   {
     Factory*                                op;
-    
+
     std::stringstream ss; std::string con;//ss<<m_nbr;ss>>con;
-    float	add;
+    float add;
     /*    std::int16_t add2;
-    std::int32_t add3;
+    std::double add3;
     float	add4;
     int16_t	add5;*/
     std::string str;
@@ -495,7 +507,6 @@ public:
 	ss.clear();
 	ss << add;
 	ss >> str;
-	
 	if ((int)this->getType() < (int)rhs.getType() && (int)this->getType() < (int)eOperandType::Float)
 	  return ((op->createOperand(rhs.getType(), str)));
 	else
@@ -510,7 +521,7 @@ public:
     std::stringstream ss;
     float	add;
     /*    std::int16_t add2;
-    std::int32_t add3;
+    std::double add3;
     float	add4;
     int16_t	add5;*/
     std::string str;

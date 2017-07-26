@@ -5,7 +5,7 @@
 // Login   <duchet_t@epitech.net>
 // 
 // Started on  Fri Jul 21 11:42:06 2017 thomas duchet
-// Last update Wed Jul 26 04:46:20 2017 Maxime Lacroix
+// Last update Wed Jul 26 12:02:32 2017 Maxime Lacroix
 //
 
 #include "Stack.hpp"
@@ -137,7 +137,7 @@ std::string			Stack::del_zero(std::string number)
 {
   int		i = number.size();
 
-  if (number.find(".") != std::string::npos)
+  if (number.find_first_of(".") != std::string::npos)
     {
       while(number[--i] == '0' && i >= 0);
       if (number[i] == '.')
@@ -150,7 +150,7 @@ std::string			Stack::del_zero(std::string number)
 
 void				Stack::my_dump(__attribute__((unused))std::vector<std::string> cmd) {
   std::cerr<<"DUMP"<<std::endl;
-
+  
   for (std::stack<IOperand*> dump = stack; !dump.empty(); dump.pop())
     std::cout << del_zero(dump.top()->toString()) << std::endl;
 }
