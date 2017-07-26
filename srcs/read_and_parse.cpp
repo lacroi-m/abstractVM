@@ -7,6 +7,7 @@
 #include "value.hpp"
 #include "Exception.hpp"
 #include <regex>
+#include <string>
 
 std::string             &ParseRead::epur_str(std::string &s)
 {
@@ -105,6 +106,10 @@ std::vector<std::string>        ParseRead::split_line(std::string &line) {
   std::string                   regbigdec = "^\\s*-?([0-9]*[.])?[0-9]+s*$";
   std::regex                    bigdecimals(regbigdec);
 
+  std::size_t semicol = line.find(";");
+  std::size_t par = line.find(")");
+  if (semicol < par)
+    throw Exception("Unfinished command");
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
   std::istringstream            tmp(epur_str(line));

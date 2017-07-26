@@ -99,6 +99,10 @@ std::vector<std::string>	Parsing::split_line(std::string &line) {
 
   std::regex                    bigdecimals(regbigdec);
 
+  std::size_t semicol = line.find(";");
+  std::size_t par = line.find(")");
+  if (semicol < par)
+    throw Exception("Unfinished command");
   std::replace(line.begin(), line.end(), '(', ' ');
   std::replace(line.begin(), line.end(), ')', ' ');
   std::istringstream	       	tmp(epur_str(line));
