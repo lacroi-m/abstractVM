@@ -67,13 +67,13 @@ USAGE EXAMPLE:
 with ">" as input and "<" as output
 
 
->./abstractVM ressources/example.avm
-< [RESULT]
+>>./abstractVM ressources/example.avm
+>< [RESULT]
 
->./anstractVM
-> push int32(2)
-> push int32(2)
-> add
-> exit
-> ;;
-< [RESULT]
+>>./anstractVM
+>> push int32(2)
+>> push int32(2)
+>> add
+>> exit
+>> ;;
+>< [RESULT]
